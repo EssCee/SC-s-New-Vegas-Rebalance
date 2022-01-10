@@ -1,0 +1,614 @@
+<!-- container_menu.xml -->
+<!-- 
+// ZENIMAX MEDIA PROPRIETARY INFORMATION
+//
+// This software is developed and/or supplied under the terms of a license
+// or non-disclosure agreement with ZeniMax Media Inc. and may not be copied
+// or disclosed except in accordance with the terms of that agreement.
+//
+//   Copyright (c) 1999 ZeniMax Media Incorporated.
+//   All Rights Reserved.
+//
+// ZeniMax Media Incorporated, Rockville, Maryland 20850
+// http://www.zenimax.com
+//
+// FILE			container_menu.xml
+// VERSION		2.0
+// AUTHOR:		Ricardo Gonzalez
+// DATE			12-20-2007
+// INFO			Menu used to transfer items to and from containers
+-->
+<menu name="ContainerMenu">
+	<class> &ContainerMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+	
+	<_PCButton_A> CM_TakeAllButton </_PCButton_A>
+	<_PCButton_E> CM_ExitButton </_PCButton_E>
+	
+	<user0> 0 </user0>		<!-- 1 if on PS3 -->
+	
+	<rect name="NOGLOW_BRANCH">
+		<id> &noglow_branch; </id>
+		<systemcolor> &hudmain; </systemcolor>
+
+		<!-- ===== MAIN POSITIONING RECT ===== -->	
+		<rect name="CM_MainRect">
+			<width> 1200 </width>
+			<height> 828 </height>
+
+			<!-- Centered on screen-->
+			<x>
+				<copy src="screen()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div><add> 43 </add>
+			</x>
+			<y>
+				<copy src="screen()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div><add> 43 </add>
+			</y>
+		</rect>
+
+<!-- ===== BACKGROUND TEXTURE ===== -->
+		<image name="CM_Background">
+			<width> 1200 <!-- 1144 --></width>
+			<height> 828 <!-- 970 --></height>
+			<x>
+				<copy src="sibling(CM_MainRect)" trait="x"/>
+				<sub> 44 </sub>
+			</x>
+			<y>
+				<copy src="sibling(CM_MainRect)" trait="y"/>
+				<add> -13 </add>
+			</y>
+			<depth> 1 </depth>
+
+			<filename> Interface\Revelation\barter_menu.dds </filename>
+			<zoom> &scale; </zoom>
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<brightness> 128 </brightness>
+			<!-- <alpha> <copy src="globals()" trait="_background_fill_alpha"/> </alpha> -->
+		</image>		
+			
+<!-- ===== SUBTITLE ===== --> <!-- 7777777 ALL NEW SECTION 7777777 -->
+    <rect name="CM_Subtitle">
+      <include src="text_box.xml"/>
+      <justify> &center; </justify>
+      <string> </string>
+      <x>
+        <copy src="screen()" trait="width"/>
+        <sub src="me()" trait="width"/>
+        <div> 2 </div>
+      </x>
+      <y>
+        <!-- Get half my height -->
+        <copy src="me()" trait="height"/>
+        <div> 2 </div>
+        <!-- Add on the 960 absolte position of the y coordinate-->
+        <add> 800 </add>
+      </y>
+      <depth> 4 </depth>
+    </rect>
+    
+<!-- ========== START ITEMS (LEFT) SIDE ========== -->
+		<rect name="CM_ItemsRect">
+			<depth> 2 </depth>
+			<locus> &true; </locus>
+
+			<width> 464 </width>
+			<height> 480 </height>
+			<x>
+				<copy src="CM_MainRect" trait="x"/>
+				<add> 20 </add>
+			</x>
+			<y>
+				<copy src="CM_MainRect" trait="y"/>
+				<add> 20 </add>
+			</y>
+		
+			<!-- ===== HEADLINE ===== -->
+			<image name="CM_Items_headline_v1">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<height> 40 </height>
+			</image>
+
+			<image name="CM_Items_headline_h1">
+				<!-- <include src="line.xml"/> -->
+				<_length> 25 </_length>
+			</image>
+			
+		<rect name="CM_LeftItemStatsRect">
+			<x> 405 </x>
+			<y> -15 </y>
+			<locus> &true; </locus>
+			<depth> 6 </depth>
+			
+			<image name="CM_Items_LeftFilterArrow">
+				<id> 0 </id>
+				<filename> Interface\Main\main_arrow_left.dds </filename>
+				<include src="REVELATION_color1.xml"/>
+				<x>
+					<copy> 0 </copy>
+					<sub> <copy src="CM_ItemsTitle" trait="width"/> </sub>
+					<sub> 25 </sub>
+				</x>
+				<y> -6 </y>
+				<width> 17.5 </width>
+				<height> 35 </height>
+				<zoom> &scale; </zoom>
+				<target> &true; </target>
+				<visible> &true; </visible>		<!-- Set in code -->
+			</image>
+			
+			<text name="CM_ItemsTitle">
+				<id> 1 </id>
+				<font> 6 </font>
+				<include src="REVELATION_color1.xml"/>
+				<systemcolor> &hudmain; </systemcolor>
+				<string> &-sInventoryItems; </string>
+				<x> <sub> 10 </sub> </x>
+				<y> -3 </y>
+				<target> &true; </target>
+				<wheelable> &true; </wheelable>
+				<justify> &right; </justify>
+			</text>
+			
+			<image name="CM_Items_RightFilterArrow">
+				<id> 2 </id>
+				<filename> Interface\Main\main_arrow_right.dds </filename>
+				<include src="REVELATION_color1.xml"/>
+				<x>
+					<copy> 0 </copy>
+					<sub> <copy src="CM_ItemsTitle" trait="x"/> </sub>
+					<sub> 10 </sub>
+				</x>
+				<y> -6 </y>
+				<width> 17.5 </width>
+				<height> 35 </height>
+				<zoom> &scale; </zoom>
+				<target> &true; </target>
+				<visible> &true; </visible>		<!-- Set in code -->
+			</image>
+		</rect>
+		
+			<image name="CM_Items_headline_h2">
+				<!-- <include src="line.xml"/> -->
+				<_length>
+					<copy> 464 </copy>
+					<sub src="me()" trait="x"/>
+					<max> 0 </max>
+				</_length>
+
+				<x>	
+					<copy src="sibling(CM_Items_RightFilterArrow)" trait="x"/>
+					<add> 20 </add>
+				</x>
+			</image>
+			
+			<!-- Player caps info -->
+			<text name="CM_Items_CapsLabel">
+				<id> 3 </id>
+				<font> 2 </font>
+				<include src="REVELATION_color1.xml"/>
+				<justify> &right; </justify>
+				<string></string>		<!-- Set in code -->
+				
+				<x> 395 </x>
+				<y> 18 </y>
+			</text>
+
+			<image name="CM_Items_headline_v2">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<height> 40 </height>
+				<x> 464 </x>
+			</image>
+			
+			<!-- ===== PLAYER'S INVENTORY LIST ===== -->
+			<hotrect name="CM_Items_InventoryList">
+				<include src="REVELATION_list_box_060.xml"/>
+				<id> 4 </id>
+
+				<x> -43 </x> <!-- -42 -->
+				<y> 60 </y>
+				<width> 536 </width>
+				<height> 408 </height>
+			</hotrect>	
+			
+			<!-- ===== FOOTER ===== -->
+			<image name="CM_Items_footer_v1">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<_bottom_to_top> &true; </_bottom_to_top>
+				<height> 40 </height>
+				<y> 440 </y>
+			</image>
+
+			<image name="CM_Items_footer_h1">
+				<!-- <include src="line.xml"/> -->
+				<_length> 25 </_length>
+				<y> 480 </y>
+			</image>
+			
+			<image name="CM_Items_TitleButton">
+				<filename>
+					<copy src="io()" trait="user0"/>
+					<add> 1 </add>
+					<copy src="me()" trait="_filename_"/>
+				</filename>
+				<texatlas> Interface\InterfaceShared.tai </texatlas>
+				<visible> &xbox; </visible>
+				
+				<width> 85 </width>
+				<height> 85 </height>
+
+				<x> 15 </x>
+				<y> 440 </y>
+				
+				<_filename_1> general_button_lt.dds </_filename_1>
+				<_filename_2> general_button_lb.dds </_filename_2>
+			</image>
+			
+			<image name="CM_Items_footer_h2">
+				<!-- <include src="line.xml"/> -->
+				<_length>
+					<copy src="parent()" trait="width"/>
+					<add src="CM_Items_footer_v2" trait="width"/>
+					<sub src="me()" trait="x"/>
+				</_length>
+				<x>
+					<copy> 25 </copy>
+					<add>
+						<copy> 70 </copy>
+						<onlyif> &xbox; </onlyif>
+					</add>
+				</x>
+				<y> 480 </y>
+			</image>
+			
+			<image name="CM_Items_footer_v2">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<_bottom_to_top> &true; </_bottom_to_top>
+				<height> 40 </height>
+				<x> 464 </x>
+				<y> 440 </y>
+			</image>
+		</rect>
+		
+		<!-- ============= BEGIN CONTAINER (RIGHT) SIDE ============ -->
+		<rect name="CM_ContainerRect">				
+			<depth> 2 </depth>
+			<locus> &true; </locus>
+			
+			<width> 464 </width>
+			<height> 480 </height>
+			<x>
+				<copy src="CM_BottomBracket" trait="x"/>
+				<add> 560 </add>
+			</x>
+			<y> <copy src="sibling(CM_ItemsRect)" trait="y"/> </y>
+
+			<!-- ===== HEADLINE ===== -->
+			<image name="CM_Container_headline_v1">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<height> 40 </height>
+			</image>
+
+			<image name="CM_Container_headline_h1">
+				<!-- <include src="line.xml"/> -->
+				<_length> 25 </_length>
+			</image>
+
+
+			
+			<image name="CM_Container_LeftFilterArrow">
+				<id> 5 </id>
+				<filename> Interface\Main\main_arrow_left.dds </filename>
+				<include src="REVELATION_color1.xml"/>
+				<x> 87 </x>
+				<y> -21 </y>
+				<width> 17.5 </width>
+				<height> 35 </height>
+				<zoom> &scale; </zoom>
+				<target> &true; </target>
+				<visible> &true; </visible>		<!-- Set in code -->
+			</image>
+			
+			<text name="CM_ContainerTitle">
+				<id> 6 </id>
+				<font> 6 </font>
+				<include src="REVELATION_color1.xml"/>
+				<string></string>		<!-- Set in code -->
+				<x>
+					<copy> 103 </copy>
+				</x>
+				<y> -18 </y>
+				<target> &true; </target>
+				<wheelable> &true; </wheelable>
+			</text>
+			
+			<image name="CM_Container_RightFilterArrow">
+				<id> 7 </id>
+				<filename> Interface\Main\main_arrow_right.dds </filename>
+				<include src="REVELATION_color1.xml"/>
+				<x>
+					<copy> 111 </copy>
+					<add src="sibling(CM_ContainerTitle)" trait="width"/>
+				</x>
+				<y> -21 </y>
+				<width> 17.5 </width>
+				<height> 35 </height>
+				<zoom> &scale; </zoom>
+				<target> &true; </target>
+				<visible> &true; </visible>		<!-- Set in code -->
+			</image>
+
+		
+			<image name="CM_Container_headline_h2">
+				<!-- <include src="line.xml"/> -->
+				
+				<x>
+					<copy src="sibling(CM_Container_RightFilterArrow)" trait="x"/>
+					<add> 40 </add>
+				</x>
+				<_length>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="x"/>
+				</_length>
+			</image>
+
+			<image name="CM_Container_headline_v2">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<height> 40 </height>
+				<x> 464 </x>
+			</image>
+
+			<!--======================= CONTAINER'S INVENTORY =======================-->
+			<hotrect name="CM_Container_InventoryList">
+				<include src="REVELATION_list_box_060.xml"/>
+				<id> 8 </id>
+
+				<x> 9 </x>
+				<y> 60 </y>
+				<width> 536 </width>
+				<height> 408 </height>
+			</hotrect>
+			
+			<image name="CM_Container_footer_v1">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<_bottom_to_top> &true; </_bottom_to_top>
+				<height> 40 </height>
+				<y> 440 </y>
+			</image>
+
+			<image name="CM_Container_footer_h1">
+				<!-- <include src="line.xml"/> -->
+				<_length>
+					<copy src="parent()" trait="width"/>
+					<sub> 0 </sub>
+					<sub>
+						<copy> 519 </copy>
+						<onlyif> &xbox; </onlyif>
+					</sub>
+				</_length>
+				<y> 480 </y>
+			</image>
+			
+			<image name="CM_Container_TitleButton">
+				<filename>
+					<copy src="io()" trait="user0"/>
+					<add> 1 </add>
+					<copy src="me()" trait="_filename_"/>
+				</filename>
+				<texatlas> Interface\InterfaceShared.tai </texatlas>
+				<visible> &xbox; </visible>
+				
+				<width> 85 </width>
+				<height> 85 </height>
+
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 100 </sub>
+				</x>
+				<y> 440 </y>
+				
+				<_filename_1> general_button_rt.dds </_filename_1>
+				<_filename_2> general_button_rb.dds </_filename_2>
+			</image>
+			
+			<image name="CM_Container_footer_h2">
+				<!-- <include src="line.xml"/> -->
+				<_length>
+					<copy> 25 </copy>
+					<add src="CM_Container_footer_v2" trait="width"/>
+				</_length>
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub> 25 </sub>
+				</x>
+				<y> 480 </y>
+			</image>
+			
+			<image name="CM_Container_footer_v2">
+				<!-- <include src="vertical_fade_line.xml"/> -->
+				<_bottom_to_top> &true; </_bottom_to_top>
+				<height> 40 </height>
+				<x> <copy src="parent()" trait="width"/> </x>
+				<y> 440 </y>
+			</image>
+		</rect>		<!-- end CM_ContainerRect -->
+
+		<!-- ===== ARROW ICON ===== -->
+		<image name="CM_ArrowIcon">
+			<id> 9 </id>			<!-- Switch arrow direction based on item flow -->
+			<filename>
+				<copy src="me()" trait="user0"/>
+				<copy src="me()" trait="_filename_"/>
+			</filename>
+
+			<height> 65 </height>
+			<width> 64 </width>
+			<zoom> &scale; </zoom>
+			<depth> 3 </depth>
+			
+			<!-- Visibility set in code -->
+			<visible> &false; </visible>
+
+			<x>
+				<copy src="sibling(CM_ItemsRect)" trait="x"/>
+				<add> 449 </add>
+				<add>
+					<copy> 50 </copy>
+				</add>
+			</x>
+			<y> 102 </y>
+			<user0></user0>		<!-- Direction of arrow -->
+			<systemcolor> &nosystemcolor; </systemcolor>
+			
+			<_filename_1> Interface\Revelation\REVELATION_container_arrow_right.dds </_filename_1>
+			<_filename_2> Interface\Revelation\REVELATION_container_arrow_left.dds </_filename_2>
+		</image>
+		
+		<image name="CM_ArrowIconBG">
+			<height> 65 </height>
+			<width> 64 </width>
+			<zoom> &scale; </zoom>
+			<depth> 2 </depth>
+			<x>
+				<copy src="sibling(CM_ItemsRect)" trait="x"/>
+				<add> 449 </add>
+				<add>
+					<copy> 50 </copy>
+				</add>
+			</x>
+			<y> 102 </y>
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<filename> Interface\Revelation\REVELATION_container_arrow_bg.dds </filename>
+		</image>
+		
+<!-- ===== BUTTON RECT ===== -->
+		<rect name="CM_ButtonRect">
+			<x>
+				<copy src="CM_ContainerRect" trait="x"/>
+				<add> 360 </add>
+			</x>
+			<y> 818 </y>
+			<locus> &true; </locus>
+			<depth> 6 </depth>
+<!-- 		<image name="RELEVATION_buttons_BG_for2">
+			<width> 232</width>
+			<height> 120</height>
+			<x> -9 </x>
+			<y> -21 </y>
+			<depth> 1 </depth>
+			<filename> Interface\Revelation\RELEVATION_buttons_BG_for2.dds </filename>
+			
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<brightness> 128 </brightness>
+			<zoom> 0 </zoom>
+		</image> -->
+			
+<!-- ===== X BUTTON =====-->
+			<image name="CM_TakeAllButton">
+				<id> 10 </id>
+				<include src="REVELATION_text_box_short.xml"/>
+				<_x> 0 </_x>
+				<_y> 0 </_y>
+				<_verbuf> 15 </_verbuf>
+				<justify> &left; </justify>
+				<_xbox_button> &xbuttonx; </_xbox_button>
+				<_PCButtonText> &-sPCMenuHintA; </_PCButtonText>
+				<string> &-sTakeAll; </string>
+			</image>
+
+<!-- ===== B BUTTON =====-->
+			<image name="CM_ExitButton">
+				<id> 11 </id>
+				<include src="REVELATION_text_box_short.xml"/>
+				<_x> 0 </_x>
+				<_y> 0 </_y>
+				<y> 37 </y>
+				<_verbuf> 15 </_verbuf>
+				<justify> &left; </justify>
+				<string> &-sExit; </string>
+				<_xbox_button> &xbuttonb; </_xbox_button>
+				<_PCButtonText> &-sPCMenuHintE; </_PCButtonText>
+			</image>
+		</rect>
+<!-- ===== END CM_BUTTONRECT ===== -->
+
+<!-- ===== ITEM ICON ===== -->
+		<image name="CM_ItemIcon">
+			<id> 12 </id>
+			<depth> 2 </depth>
+
+			<x> <copy src="sibling(CM_ItemsRect)" trait="x"/><sub> 15 </sub></x>
+			<y>
+				<copy src="sibling(CM_ItemsRect)" trait="y"/>
+				<add> 521 </add>
+			</y>
+			<width> 256 </width>
+			<height> 256 </height>
+			<systemcolor> &hudmain; </systemcolor>
+			<zoom> &scale; </zoom>
+			<visible> &false; </visible>
+		</image>
+
+<!--================================= ITEM DATA ==================================-->
+		<rect name="CM_ItemData">
+			<include src="REVELATION_item_stats_display.xml"/>
+			<id> 13 </id>
+			<x>
+				<copy src="sibling(CM_ItemsRect)" trait="x"/>
+				<add> 300 </add>
+			</x>
+			<y>
+				<copy src="sibling(CM_ItemsRect)" trait="y"/>
+				<add> 585 </add> <!-- 7777777 535 7777777 -->
+			</y>			
+			<systemcolor> &hudmain; </systemcolor>
+		</rect>
+
+<!-- ===== BOTTOM BRACKET ===== -->
+		<rect name="CM_BottomBracket">
+			<!-- <include src="bottom_bracket.xml"/> -->
+			
+			<width> 1024 </width>
+			<height> 40 </height>
+			<x> <copy src="sibling(CM_ItemsRect)" trait="x"/> </x>
+			<y> 820 </y>
+			
+			<depth> 2 </depth>
+		</rect>		
+	</rect>	<!-- end NOGLOW_BRANCH -->
+	
+<!--======================== LIST BOX TEMPLATE =========================-->
+	<template name="CM_list_template">
+		<hotrect name="CM_list_template_container">
+			<include src="list_box_template.xml"/>
+			<id> 20 </id>		<!-- 40503: Setting ID directly so that it's set at creation time and not later; an empty ID trait can cause certain event handlers to get skipped -->
+			
+			<_VerticalSpacing> 6 </_VerticalSpacing>
+			<text name="ListItemText">
+				<font> 3 </font>
+				<systemcolor> &hudmain; </systemcolor>
+				<wrapwidth> 445 </wrapwidth>
+				
+				<x> 40 </x>
+				<y> 10 </y>
+				<string></string>				<!-- Set in code -->
+				<alpha> 255 </alpha>		<!-- Set in code -->
+			</text>
+
+			<!-- Small square denotes an equipped item -->
+			<image name="CM_list_template_ItemMarker">
+				<filename> Interface\Revelation\template_ItemMarker_square_filled.dds </filename>
+				<texatlas> Interface\InterfaceShared.tai </texatlas>
+				<width> 20 </width>
+				<height> 20 </height>
+				<systemcolor> &nosystemcolor; </systemcolor>
+				<x> 15 </x>
+				<y> 9 </y>
+				<visible> &false; </visible>		<!-- Set in code -->
+			</image>			
+		</hotrect>
+	</template>
+</menu>

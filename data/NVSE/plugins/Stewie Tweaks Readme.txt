@@ -1,0 +1,1920 @@
+Stewie Tweaks v6.56 ReadMe
+
+Each of the plugin's features should be enabled in the provided INI as desired. 
+If the settings don't exist, run the game with the plugin active and they will be generated.
+
+Setting Guide:
+b... - a boolean value (0 or 1) - setting to 0 will disable the feature and 1 will enable it.
+i... - an integer value (whole numbers) e.g. 0, -101, 17
+f... - a float value (decimals) e.g. 1.0, -5.6442, 0.104
+
+----------------
+[INI]
+bSortAlphabetically
+Sort the mod's ini alphabetically.
+
+bPrependNewSettings
+Add new settings to the top of sections instead of the bottom.
+
+----------------
+
+[Tweaks]
+To enable any Tweaks, set them to ' = 1' instead of ' = 0'.
+
+bInlineVanillaFunctions
+Optimises the most frequent/expensive functions for various scenarios to decrease save/loading times and improve general performance. If you're using 'New Vegas Tick Fix' make sure it's updated (v9.6+).
+
+bNoScreenshotPopup
+Stops the "Screenshot: File ... created" pop-up appearing at the top right corner of the screen.
+Options (Screenshot Popup):
+ bPrintToConsole - make the message appear in console instead of just removing it altogether
+
+bNoKarmaMessages
+Stops the sounds and messages for good and bad karma.
+Options (Karma Messages):
+  bRemoveEvilMessage
+  bRemoveEvilSound
+  bRemoveGoodMessage
+  bRemoveGoodSound
+  iRepeatKarmaSoundIgnoreTime - stops the bad karma sound repeating within the provided time (in milliseconds)
+  iKarmaIncreaseThreshold - ignore karma messages and sounds if the increase in karma is below this value
+  iKarmaDecreaseThreshold - ignore karma messages and sounds if the decrease in karma is below this value
+  
+bNoCrippleCriticalMessages
+Removes the crippled or critical messages.
+Options (Cripple-Critical Messages):
+  bPatchCritical - remove critical hit messages
+  bPatchCripple - remove crippled enemy limb messages
+
+bAimingSpeed
+Remove the movement penalty associated with aiming.
+Options (Aiming Speed):
+  bPatchMelee - remove the penalty for melee blocking
+  bPatchNonMelee - remove the penalty for iron sighting
+
+bNoAudioDistortion
+Remove the audio distortion effect applied to actors wearing masks and intercoms.
+Options (Audio Distortion):
+  bDeepFried - apply the distortion to all sounds, not just NPCs wearing masks
+
+bNoScrollwheelPOVChange
+Stops the point of view changing when zooming in/out (scrolling)
+Options (Scrollwheel POV):
+  bDisableFirstToThird
+  bDisableThirdToFirst
+
+bFasterSleepWait
+Decreases the amount of time spent waiting between hours in the sleep and wait menus.
+Options (Sleep Wait):
+  iWaitTimeMS - time spent waiting between hours in milliseconds
+  bDontScaleWithTimescale - makes the wait time unaffected by the current timescale (e.g. sgtm command)
+
+bNoPipBoyInCombat
+Disallows use of the PipBoy during combat.
+Options (No PipBoy In Combat):
+  bShowMessage - enable corner messages "No PipBoy in combat" or "Not enough AP to use PipBoy in combat"
+  bAllowPipboyUsingActionPoints - allow the use of PipBoy for bPipboyAPCost action points
+  bPipboyAPCost - number of action points used
+
+bJumpingCostsAP
+Makes jumping cost Action Points.
+Options (Jumping Costs AP):
+  iJumpAPCost - number of action points used
+  bJumpWithoutEnoughAP - if set to 0, you will only be able to jump if you have enough AP
+
+bNoXPBarInCombat
+Delay XP pop-ups till the end of combat.
+Options (Combat XP):
+  iCombatXPDelayMS - the amount of time after combat till the XP message will be shown
+
+bNoSkillTags
+Hides the [Perk], [Speech], [Barter], etc. tags from dialog options.
+Options (No Skill Tags):
+  bRemoveRedOutline - removes the red outline on dialog options where the skill check would fail
+  iRemoveTags - 
+    Mode 0 - Does not remove the skill tags
+    Mode 1 - Removes the entire tag i.e. [Speech 20] Yes... -> Yes...
+    Mode 2 - Only removes the number : i.e. [Speech 10/20] No... -> [Speech] No...
+  bAddPercentSymbol - show the % symbol on TTW percentage based speech checks (e.g. [Speech 20%] -> [Speech%])
+  bRemoveFailedSuccessText - removes the [SUCCESS] and [FAILED] from responses
+  bNoXPPopupInDialogue - hides XP pop-ups if earned during dialog
+
+bMovementPenalties
+Adds a configurable movement penalty for when the player is moving backwards or aiming.
+Options (Slower Backpedaling):
+  iLeftStrafeSpeedPercentage - moving left
+  iRightStrafeSpeedPercentage - moving right
+  iBackSpeedPercentage - moving backwards
+  iBackLeftSpeedPercentage - moving diagonally back and left
+  iBackRightSpeedPercentage - moving diagonally back and right
+  iFrontLeftSpeedPercentage - moving diagonally forward and left
+  iFrontRightSpeedPercentage - moving diagonally forward and right
+  iMeleeAimSpeedPercentage - modifier when blocking
+  iAimSpeedPercentage - modifier when iron sighting
+  
+bHardcoreTweaks
+Enable toggling of individual hardcore features, regardless of the game's hardcore setting.
+Options (Hardcore Tweaks):
+  bAmmoWeight - toggle ammo having weight
+  bEssentialCompanions
+  bSleepingHeals - toggle sleeping healing the player - NOTE: does not affect sleeping in player-owned beds as this is a scripted effect.
+  
+bOverencumberedTweak
+Enables running and jumping for Action Points while over-encumbered.
+Options (Over Encumbered):
+  iAPDrainCost - amount AP is drained by every iAPDrainIntervalMS
+  iAPDrainIntervalMS - rate at which AP is drained (in milliseconds)
+  iJumpAPCost - action points used to jump
+  bJumpWithoutEnoughAP - allows jumping while over-encumbered with 0 AP
+  bRemoveEncumbranceMessage - removes the "You are over-encumbered and cannot run!" message
+  bAllowRunWithoutEnoughAP - allows running while over-encumbered with 0 AP
+
+bEnteringVATSCostsAP
+Adds an AP penalty for entering VATS.
+Options (Entering VATS Costs AP):
+  iEnterVATSAPCost - action points used to enter VATS
+  bNoVATSIfNotEnoughAP - stops VATS entering if there is not enough AP to fire the current weapon
+  bFailOnly - only charge AP if there were no targets found
+  bChargeOnVATSNoTargetsExit - instead of charging AP when entering VATS, charge it if you exit VATS without selecting a target
+
+bImprovedAutosave
+Use incremental save slots for autosave, optionally fullsaving every rotation.
+Options (Save Manager):
+   iReloadCurrentSaveKey - hotkey to reload the current loaded save (as if the player died)
+   iCreateSaveKey - hotkey to create a named save
+   iIncrementalSaveKey - hotkey to create an incremental save (using slots)
+   iMaxIncrementalSaveCount - number of incremental save slots
+   iAutoSaveTimer - delay between timed autosaves in seconds
+   iMaxAutoSaveCount - number of autosave slots, when the max slot is reached it will begin overwriting from slot 0
+   bPeriodicFullsave - fullsave every time the max slot is reached
+   bHideAutosaveMessage - hide the mod and vanilla autosave messages
+   bSaveOnLocationDiscovered - autosave when a location is discovered
+   bSaveOnQuestCompleted - autosave when a quest is completed
+   bSaveOnExitGame - autosave when exiting the game
+   bSavePreLevelUp - autosave before the levelup menu is shown
+   iMinAutosaveInterval - prevents autosaves within this time of each other (in seconds) - affects vanilla and timed autosaves
+   iIncrementalSaveSlotChangeInterval - only increase the incremental save slot if it's been this long since last slot change (in seconds); e.g. when set to 60 seconds, any saves made within 0-60s of the first save in a slot will all overwrite each other - after that 60s a new slot is used 
+   bPreventAutosaveInCombat - prevents timed autosaves in combat if in [Danger], saves occur between 0-8 seconds after combat ends.
+   bPreventScriptedSaves - prevents scripts saving the game (via SaveGame, ForceSave, AutoSave and SystemSave commands) - does not prevent vanilla autosaves e.g. saving on cell enter, use the settings menu for those.
+
+bNoAltTabPause
+Stops the game showing the pause menu on alt-tab, recommend pairing with OneTweak's "Active in Background" option to keep the game running when alt-tabbed.
+
+bJumpWhileAiming
+Allows jumping while aiming or blocking.
+
+bMidairFastTravel
+Allows fast-travel in midair.
+
+bNoXPMessages
+Stops the XP pop-up and associated sound.
+Options (Disable XP Messages):
+  bKills
+  bDiscoverLocation
+  bRewardXPCommand
+  bSpeechChallenges
+  bHacking
+  bLockPick
+
+bBetterAutoWalk
+Moving left or right does not cancel auto-walk (Q key).
+Options (Better Autowalk):
+  bAllowBackwardsAutowalk - allows backwards autowalking by starting the autowalk while moving backwards
+
+bDebugLockpickMenu
+Shows the debug lock-pick menu on all lock-pick menus (cheat).
+
+bNoPipboyOnAltTab
+Stops the PipBoy showing if tab is pressed while alt is held.
+
+bNoUnconciousMessage
+Stops the "Actor is now unconscious" message.
+
+bManualReload
+Stops the player automatically reloading when the clip is emptied.
+Options (Manual Reload):
+  bNoReloadOnAmmoPickup - prevents the automatic reload when ammo is picked up and your weapon is empty.
+  bPreventFiringAnimWhenEmpty - prevents the firing animation if the clip is empty.
+  iAutoReloadClipSizeThreshold - weapons whose magazine is this size or below will reload automatically.
+  bAutoWeaponsPlayEmptyClipSound - play the empty clip sound when the clip is emptied for automatic weapons
+  bAutoWeaponsOnly - keep automatically reloading semi-fire weapons
+
+bNoStartMenuDLCPopup
+Removes the "Loading extra content..." pop-up at the start menu.
+
+bUseWASDAsArrowKeys
+Allows use of WASD keys in menus, and space to accept - will not function if the keys conflict with menu key-binds.
+Also adds a hotkey "TAB" to close any menus excluding Dialog.
+Options (Menu WASD):
+  bOldMenuWASD - makes WASD buttons always act as arrow keys even if they would conflict with vanilla key-bindings
+  bAlwaysAllowWASD - always allow WASD movement keys by ignoring WASD+E XML menu hotkeys
+  bWASDKeysRepeat - holding a WASD key repeats the action, as with arrow keys
+  bNoSpaceClosesContainer - stops the space key closing containers
+  bInventorySelectionAlwaysVisible - stops the inventory selection disappearing when activating an item with keyboard input
+  bContainerDefaultToRightSide - makes the selection default to the right hand side when opening a container menu
+  bShiftScalesMapZoomSpeed - holding shift scales the zoom speed
+	bShiftScalesContainerArrowKeys - holding shift scales the arrow key scroll speed in containers
+	bShiftScalesMousewheel - holding shift scales the mouse-wheel scroll by 4 for all menus
+  bMapMenuWASD - holding alt allows WASD to move the map menu, up/down zooms
+  bMapMenuWASDCentersSelectionReticle - using map menu WASD resets the selection reticle to the center of the screen
+  bSelectWithEKey - make the 'E' key behave like spacebar in menus
+  bTabReturnsToInventory - make tab return to the Inventory rather than closing the PipBoy for the Weapon Mod and Repair menus
+
+bHideEnemyMarkers
+Hides the enemy markers from the compass.
+Options (Compass):
+  bShowFiringEnemies - show enemies who are currently firing their weapon (enemies performing an attack animation)
+
+bEquipBrokenItems
+Allows equipping of broken items (to allow repair with weapon repair kits or skill bonus from apparel).
+
+bIgnoreCompanionsVATS
+Stops VATS targeting companions.
+
+bDontShowContainerAfterLockpick
+Stops the container menu showing automatically when opening with lock-pick or a key.
+
+bKeepPipboyLightOnCellChange
+Stops the PipBoy light turning off when entering an exterior cell.
+
+bLockpickAllowMouse
+Allows the use of left clicking to rotate during lock-pick (in addition to the default WASD).
+
+bNoHackingRetryDelay
+Removes the delay between hacking attempts (same as changing the game-setting iHackingRetryMilliseconds to 0).
+
+bJumpWhileOverencumbered
+Allow jumping while over-encumbered.
+
+bNoMaxCasinoBet
+Removes the max bet in casinos and makes increments above 1500 increase by 500 (from 100 default).
+
+bFasterSaveMenuClose
+Removes a hard-coded 3 second delay before menu closing when saving using the pause menu.
+
+bNoQuestFailedPopup
+Stops the QUEST FAILED showing upon failing a quest.
+Options (No Quest Failed):
+  bQuestFailedOnlyIfStarted - show the QUEST FAILED but only if the quest was started
+  
+bNoLocationPopup
+Stops the Location Discovered showing.
+
+bNoAmmoCasings
+Stops shooting earning the player ammo casings.
+
+bFasterHackingTransition
+Decreases the delay after a successful hack by 2.5 seconds.
+
+bKeepRouletteBetAmount
+Don't reset the bet amount to 1 after playing roulette.
+
+bConsoleNumpadSupport
+Adds support for the numpad buttons /*-+., enter and 0-9 to be used in console.
+
+fCraftedItemHealthPct
+Set the condition of the items returned from crafting (default is 80%).
+
+bAllowActivateWhileAnimPlays
+Allows activating while firing, reloading, jumping, landing etc. - This means you can start reloading, open a door and finish reloading on the other side.
+
+bPatchUnseenCellName
+Appends a * to the activation prompt of doors leading to interior cells that have not been visited e.g. "Door to Saloon*".
+Options (Unvisited Cell Indicator):
+  bUnnameUnvisitedCells - obscure the cell name to unvisited cells, e.g. Door to...
+  bPatchRespawnedCellName - append a + to the activation prompt of doors leading to cells that have re-spawned
+  bShowVisitedCellsPrompt - show a * on Visited cells instead of unvisited
+
+bSkipDeathcamHotkey
+Adds a hot-key "Left-Alt" to instantly end the player death-cam.
+
+bDescriptiveMarkerAddedMessage
+Adds the marker location name to the "Marker marker added." pop-up.
+
+bNoVATSTargetInvisible
+Disallow targeting invisible enemies in VATS.
+
+bRemoveDownloadsButton
+Removes the useless downloads button from the main menu.
+
+bHideInvisibleUndiscoveredLocations
+Only show unvisited locations on the compass if they are marked on the map.
+
+bCompassHeightIndicator
+Use custom icons to show whether an NPC is above or below the player (texture path : Data/Textures/Interface/HUD/glow_hud_tick_mark_above.dds and ""/glow_hud_tick_mark_below.dds).
+Options (Compass Height Indicator): 
+  iHeightThreshold - distance above/below the player before the custom icons are used
+  
+bCompassNPCDistanceBasedAlpha
+Fade the compass NPC pips based on distance to the player, uses game-settings fSneakMaxDistance and fSneakExteriorDistanceMult.
+
+bCompassLocationDistanceBasedAlpha
+Fade the compass location markers based on distance to the player.
+
+bUndiscoveredLocationIcons
+Use the PipBoy location icon in place of the compass' undiscovered location icon.
+
+bDisableCompassEdgeAlpha 
+Disable the alpha effect given to pips on the right edge of compass.
+
+bNoSkillBooksAbove100
+Prevents consumption of books if skill level is already at 100.
+
+bNoMinCompanionMapDistance
+Removes minimum distance companions are shown on the world map.
+
+bMapShowUnconsciousCompanions
+Show unconscious companions on the map, in red.
+
+bCompanionPipColorChange
+Customize the color of companions on the compass.
+Options (Companion HUD Color):
+  uRGB - the red/green/blue value of the color in hexadecimal
+
+bDisableShowQuestLocation
+Disables the functionality of the "Show Location" button on the quest menu.
+
+bDisableFastTravel
+Disables fast travel.
+
+bRememberBobbyPinHealth
+Remembers the bobby pin health between locks (works through saves)
+
+bNoEquippedWeaponMovementPenalty
+Removes the movement penalty when holding a weapon.
+
+bRemoveWeaponDamageBuffer
+Removes the damage buffer provided for weapons above 75% condition.
+
+bKeepCrosshairWhenAiming
+Keep the cross-hair on the screen when aiming with non-scoped weapons.
+
+bRepeatJumping
+Holding the jump button repeatedly jumps.
+
+bRemoveSneakLabel
+Removes the [HIDDEN] etc. label from the HUD.
+
+bTabClosesTerminals
+Adds a hotkey Tab to close terminals.
+
+bTabBackInStartMenu
+Adds a hotkey Tab to go back in the start/pause menu.
+
+bContinueGameHotkey
+Adds a debug hotkey to continue the game from the loading/start menu for mod development ONLY (since if you press the hotkey too early, mods that utilize JIP's MenuMode 4 will not get a chance to run).
+
+bLevelUpScrollWheelSupport
+Adds scroll-wheel support for the -+ skills in the level up menu.
+
+bNoLTRTOnPipboy
+Use the PipBoy texture without LT and RT painted on when a controller is connected.
+
+bNoRedCrosshairOnEnemies
+Stops the cross-hair turning red on enemies.
+
+bAllowOpenPipboyDuringCameraShake
+Allows opening of the PipBoy when the screen is shaking (will reset the screen shake).
+
+bLeftAndRightCancelEachOther
+Makes holding left and right movement keys not move the player (vanilla would move the player left).
+
+bFixEnhancedCameraGroundSinkBug 
+Provides a workaround for a bug in the Enhanced Camera mod where the player would sink into the ground when changing from first to third person.
+
+bTalkWhileSneakingIfShiftIsHeld
+While sneaking, holding shift will talk to an NPC instead of pickpocketing them.
+
+bChargedAttacksCostAP
+Adds an Action Points penalty for performing charged unarmed attacks.
+Formula: 
+  Min(iChargedAttackAPCostMax, iChargedAttackAPCost + (fChargedAttackWeaponWeightAPMult * weaponWeight))
+Options (Charged Attacks):
+  iChargedAttackAPCost - base number of action points used
+  fChargedAttackWeaponWeightAPMult - extra action points per point of weight for the current weapon
+  iChargedAttackAPCostMax - max AP cost for a charged attack
+
+bAddInventoryDropItemHotkey
+Adds a hot-key 'Q' to drop the currently selected item from the PipBoy menu.
+
+bInstantContinueButton
+Skip the "Continue from your last saved game?" prompt when clicking continue game in the main menu.
+
+bUseCustomSniperZoomRate
+Set how quickly scoped weapons zoom.
+Options (Scope Zoom):
+  fScopeFOVTimeChange - rate at which scoped weapons will zoom in, vanilla is 0.25, setting to 0 zooms instantly
+  bZoomOutAtSameRate - make the setting also affect zooming out
+ 
+bDistanceBasedQuestMarkerVisibilty
+Hide quest markers beyond a set distance.
+Options (Quest Marker):
+  fMaxExteriorQuestMarkerDistance - maximum exterior distance from which to show quest markers
+  fMaxInteriorQuestMarkerDistance - maximum interior distance from which to show quest markers
+
+bQuickUse
+Holding shift will equip/use the cross-hair item. Right clicking on a non-armor item will equip it.
+Options (Quick Use):
+  bRealtimeQuickUse - Holding shift will equip/use the cross-hair item during game-play
+  bContainerRightClick - right clicking an inventory item while in a container will equip the item (excludes armor)
+  bContainerHotkey - adds a hot-key 'F' to use the selected item in a container (excludes armor)
+  bBookSupport - allows quick use on books
+  bNoteSupport - show the Book Menu when quick-using notes (requires textures and XML from Book Menu Restored)
+  bShowItemStats - show item stats e.g. DPS, DAM, DT and DR while shift is held
+  bShowReReadOnSeenNotes - show 'Re-read' on the prompt for notes that have already been read
+
+bDecreasedDialogueClickDelay
+Halves the delay before you can click on a dialog option when having a conversation (500ms->250ms).
+
+bHideUnknownNPCNames
+Hide NPC names on the prompt if they haven't spoken to the player.
+Options (NPC Names):
+  bShowNameOnDeadNPCs - show the name if the NPC is dead
+
+bReduceXP
+Scale all earned XP.
+Options (Reduced XP):
+  fXPMultiplier - multiplier applied to earned XP, the result is rounded up
+
+bVatsExitKey
+Adds hotkeys Tab and Right Click to instantly end the VATS killcam.
+Options (VATS Exit Key):
+  bInstantEnd - instantly end VATS playback rather than waiting for the current action to end
+
+bDontSetQuestWhenCompletingObjectives
+Don't set the current quest when completing objectives without having a quest active.
+
+bNoExitHacking
+Don't allow exiting the hacking menu if an attempt has been made.
+Options (Terminal Exit):
+  bFailOnEarlyExit - lock out of the terminal if exiting after making an attempt
+
+bSlotsAutoSpinHotkey
+Holding W will continually spin the slot machine.
+
+bUKKeyboard
+Use the UK Keyboard layout for console and other menus.
+
+bRemoveQuestObjectiveAddedText
+Hides the text for added objectives from the main HUD.
+Options (Quest Added):
+  bHideCompletedObjectivePopup - hides the quest completed objective text
+
+bPickLocksEvenWithKey
+Holding shift allows picking a lock/terminal even if you have the key.
+
+bRememberConsoleHistory
+Stores/restores console history from ConsoleHistory.txt.
+Options (Console):
+  iSentHistoryMaxSize - max number of commands to store (default is 200)
+
+bConsoleHistoryNoStoreDuplicates
+Prevents consecutive duplicate commands being added to the console's input history list.
+
+bNoKillcamKillSound
+Stops the 'Quest Added' sound playing whenever a cinematic killcam is shown.
+
+bNoGrabOwnedItems
+Disallows grabbing (Z key) of owned items.
+
+bSkipIntroVideo
+Automatically skips the main menu video once loading is finished.
+
+bFirstPersonVATS
+Forces VATS firing camera to play in first person.
+
+bAllowUnsafeFastTravel
+Allows fast-traveling from indoors (you must be careful not to travel out of scripted areas).
+Options (Unsafe Fast Travel):
+  bShowWarning - show a warning when travelling from restricted areas.
+
+bRemoveLandingAnim
+Stops the landing animation playing.
+
+bHoldCrouchToSneak
+Makes sneaking holdable rather than toggle-able.
+
+bFastTravelCostsSpecialNukaBottles
+Makes fast travel cost 1 Nuka-Cola Quantum, Quartz or Victory.
+
+bDisableSellingItems
+Removes the ability to sell items in the barter menu.
+
+bUseCustomBarterPriceMultipliers
+Set custom buy/sell multipliers for each item type (applied before perk modifiers).
+Options (Barter Prices):
+  bConstantPurifiedWaterPrice - don't scale the price of purified water
+  ; multipliers when you are selling an item
+  fSellMultArmor 
+  fSellMultWeapon
+  fSellMultAid
+  fSellMultAmmo
+  fSellMultMisc
+  fSellMultWeaponMod
+  ; multipliers when you are buying an item
+  fBuyMultArmor
+  fBuyMultWeapon
+  fBuyMultAid
+  fBuyMultAmmo
+  fBuyMultMisc
+  fBuyMultWeaponMod
+
+bNumberedDialogHotkeys
+Adds hot-keys 0-9 to select dialog options (recommended use with VUI+).
+Options (Dialog Hotkeys):
+  bPrependDialogNumberHotkeys - display list numbers for topics in dialog
+  bTabClicksLastTopic - add hotkey 'Tab' to choose the last option.
+  
+bNoAutoContinueDialog
+Stops dialog with NPCs being skipped automatically.
+
+bDisableHitShader
+Disables the radial blur when damaged (optionally only when in god-mode).
+Options (Hit Shader):
+  bOnlyDisableInGodmode
+
+iMaxCharacterLevel
+Sets the max player level and disables the hard-coded +5 per DLC.
+
+bTerminalInstantDisplayHotkey
+Adds hot-keys shift and right mouse button to instantly display the current terminal text, and left mouse to speed up display of submenus.
+
+bSwapKeyboardYZKeys
+Swap the Y and Z keys.
+
+bReloadingWithFullClipSwitchesAmmoType
+Reloading with a full clips switches ammo type.
+
+bBetterFlycam
+Adds AutoMove, flying up and down using Jump and Crouch, rotating pressing Z and C, and scrolling changes flight speed.
+Options (Flycam):
+  fAimSpeedMult - speed multiplier while aim is pressed
+  fRunSpeedMult - speed multiplier while run is pressed
+  fScrollSpeedScale - multiplier for how much the mouse scroll-wheel influences fly speed
+	fRotateSpeedMult - rotation speed multiplier
+  bSmoothCamera - adds a hotkey 'Reload' to enable a smooth/cinematic camera
+
+bNPCsDropWeaponHolsteredWeapon  
+Allow enemies to drop weapons on death even if they are not out.
+
+bDisableReloadingNonEmptyClip
+Prevents reloading if the weapon's clip is not empty
+
+bDisableGrenadeIndicator
+Removes the grenade indicator from the HUD.
+
+bWeightlessWornPowerArmor
+Power armor is weightless while equipped.
+Options (Weightless Worn Power Armor):
+  bRequireTorsoArmorForWeightlessHelmet - make power armor helmets only weightless if torso power armor is also equipped
+  bRequirePowerArmorTraining - only make power armor weightless for the player/teammates if they have the Power Armor Training perk
+
+bShiftScreenshotHidesMenus
+Holding shift when taking a screen-shot hides the menus.
+
+bFastTravelWithEnemiesNearby
+Allows fast travel while enemies are nearby.
+
+bNoKnockdownInGodmode
+Disables the player being knocked down when in god-mode, may break scripted sequences.
+
+bDoubleTapReloadToChangeAmmoType
+Double tapping the reload key will change ammo types.
+Options (Double Reload Swaps Ammo Type): 
+	bAllowMultipleQuickChanges - pressing Reload additional times will swap the ammo type
+	iAmmoSwapTimeMS - time in milliseconds that the Reload key must be pressed within to swap ammo types
+
+bForceLockpickNoBreakLock
+Failing a lock-pick force attempt breaks a bobby pin instead of the lock.
+Options (Lockpick):
+  bLockpickForceResetPinHealth - reset the current bobby pin health when failing to force a lock
+  bPreventUseLockWithNoBobbyPins - prevents the LockPick Menu opening when the player has no bobby pins
+
+bDisableControllerDeadzones
+Set a custom dead-zones for controller thumb-sticks, allowing finer movement and aiming.
+Options (Controller Deadzone): 
+  iControllerDeadzone - dead-zone value (between 0 and 32767)
+
+bFasterControllerPOVRotate
+Increases the controller rotation speed when POV is held to half of sensitivity.
+
+bHideCursorInDialog
+Hide cursor while in Dialog menus.
+Options (Dialog Hide Mouse): 
+  bOnlyWhenNPCSpeaks - only hide the cursor while the NPC is talking
+
+bFasterTitleMenu
+Remove the wait for the Fallout New Vegas logo to be at full alpha.
+
+bShiftIgnoresFriendlyVATS
+Holding shift ignores friendly NPCs when entering VATS.
+Options (VATS):
+  bHideFriendliesByDefault - inverts mod behavior so holding shift SHOWS friendly NPCs.
+
+iPerksPerLevel
+Perks to earn per level - note: Perks that show a menu after being selected are incompatible with each other, e.g. Intense Training and Tag!.
+
+bDisableExplosionInFaceIMOD
+Disables the radial blur when an explosion occurs nearby.
+
+bModifySkillPointsEarned
+Modifies skill points earned on level-up.
+The formula is : iSkillPointBase + ceil(Intelligence * fPointsPerInt)
+Options (Skill Points):
+  iSkillPointBase - base skill points before Intelligence bonus is added
+  fPointsPerInt - skill points earned per intelligence
+
+bLuckDoesntAffectGambling
+Removes the luck skill's effect on gambling by initializing the Gambling Menus with a luck of 5.
+
+bRemoveChemWarnOffIMOD
+Removes the chem worn off screen effect.
+  
+bAdjustableScopeZoom
+Allows scroll-wheel to zoom while using a scope.
+Options (Adjustable Zoom):
+	fZoomRate - rate at which weapons are zoomed
+	fShiftZoomModifier - multiplier applied to zoom rate while shift is held
+  bResetZoomOnWeaponChange - resets the current zoom when changing weapons
+  bZoomableNonScopedWeapons - allow zooming on non-scoped weapons
+  bSmoothScrollZoom - apply smoothing to the change in zoom
+  iScopeResetTimeMS - resets the current zoom if unscoped for this long, set to 0 to disable
+  bBinocularsOnly - only allow zooming on weapons with no projectile (e.g. binoculars)
+  fMinFOV - minimum scope FOV (max zoom)
+	fMaxFOV - maximum scope FOV (minimum zoom)
+  fMinFOVMult - minimum multiplier applied to weapon FOV (max-zoom)
+  fMaxFOVMult - maximum multiplier applied to weapon FOV (min-zoom)
+  
+bPopupMenusDontMoveCursor
+Prevents pop-up menus moving the mouse to the center of the screen.
+
+bAddNightVisionToggle
+Pressing the iTogglePipboyLight key while aiming with a night vision weapon toggles off the night vision effect.
+Option:
+  bDisableVisionByDefault - disables night vision for weapons until the toggle key has been pressed
+  bAllowNightVisionDuringDay - allow night vision during daytime
+
+bScopeHoldBreath
+Holding shift decreases scope wobble at the cost of Action Points.
+Options (Hold Breath):
+  iScopeHoldBreathAPDrain - AP cost per interval
+  iScopeHoldBreathAPDrainIntervalMS - interval length in milliseconds
+  fScopeHoldBreathWobbleMult - wobble multiplier while breath is held
+  bRequireWeaponStrength - only allow holding breath if you have the required weapon strength
+	bRequireWeaponSkill - only allow holding breath if you have the required weapon skill
+  iHoldBreathKey - scancode of keyboard key to hold breath
+  
+bPowerArmorScalesFallDamage
+Wearing power armor scales fall damage.
+Options (Power Armor):
+  fFallDamageMult - fall damage multiplier
+
+bAgilityScalesMovementSpeed
+Agility is scaled by fAgilityMovementSpeedMult for every point above or below 5, the latter slowing down the player.
+The formula is: speedMult = normalSpeedMult * (1 + (agility - 5) * fAgilityMovementSpeedMult).
+Options (Agility Scales Movement Speed):
+  fAgilityMovementSpeedMult - additional movement multiplier per agility point above 5. Agility below 5 is scaled down.
+
+bDisableWeaponFOV
+Disables zooming when aiming with non-scoped weapons.
+Options (Weapon FOV):
+  bExcludeNonSightedWeapons - only disable the zoom for weapons that have ironsights
+
+bDisableHolsteredWeaponFOVZoom
+Disables zooming when aiming with a weapon holstered.
+
+bNoCapitaliseContainerCategories
+Stops the container category titles being capitalized (you will need to change the AMMO title game-setting since it's capitalized in the actual setting, unlike Aid, Weapons and Armor).
+
+bUnequipBrokenArmor
+Automatically unequip armor when it breaks.
+Options (Unequip Broken Armor):
+  sArmorBreakMessage - UI message when armor breaks
+
+bWeaponRequirementsMatter
+Don't allow equipping of weapons without the required strength and skill.
+Options (Weapon Requirements Matter):
+  bIgnoreStrengthRequirement - ignore strength requirement for all weapons
+  bIgnoreNonHeavyStrengthRequirement - ignore strength requirement for weapons that aren't of type 'Two Hand Launcher' or Two Hand Handle'
+  bIgnoreSkillRequirement - ignore skill requirement
+  bIgnoreThrowables - ignore requirements for grenades, mines and throwable weapons
+  
+bSneakAttackWithoutCrouching
+Allow sneak attacks while standing.
+
+bDisableLoadingScreenTips
+Removes the tips from loading screens.
+
+bDisableCompanionKillcam
+Prevents the killcam being activated by companion kills.
+
+bPauseOnSaveLoad
+Automatically pause the game when loading a save.
+
+bConditionBasedWeaponSpread
+Restores the fGunSpreadCondBase and fGunSpreadCondMult game-settings.
+
+bDisableInteriorFog
+Removes non-static fog from interiors.
+Options (Interior Fog Remover):
+  fFogFarDistanceThreshold - distance over which far fog is removed - setting too low will cause visual bugs in some caves
+
+bImprovedHacking
+Improves various aspects of the hacking mini-game.
+Options (Hacking):
+  bHackingNoSingleCharacterAttempts - prevents single character attempts while hacking, i.e. clicking on "/" will do nothing rather than waste an attempt and clutter the guesses output.
+  bRemoveDudIfAllowanceFull - remove a dud instead of replenishing allowance if allowance is already full
+  bNoAllowRepeatWords - prevent attempts at guessing the same word
+  bNoSpecialInputPrinting - don't print the clicked on string with the "Dud Removed" and "Allowance replenished." messages
+  bNoRemoveGuessedWords - make 'Dud removed.' ignore guessed words (unless they're the only words left)
+  bCompactGuesses - prints guesses as a single line without the 'Entry denied', e.g. HORIZON (1/7)
+  bOverscroll - make scrolling to the edge of the screen wrap around to the other side (controller or WASD)
+
+  
+bLockNeedsKeyShowName
+Adds the name of the required key to the end of the sImpossibleLock message. Note: some keys are just named "Key" in the base game - see https://fallout.fandom.com/wiki/Fallout:_New_Vegas_keys
+
+bScopeVisibleAPHP
+Adjust visibility of HUD elements while scoped.
+Options (Scope HUD Visibility):
+  iFlags - hexadecimal value containing all the sum of all the desired flags. e.g. 0x00000001 would just be ActionPoints visible; 0x00000003 is HitPoints and ActionPoints; 0x000011A0 would be XpMeter, Messages, SneakMeter and RegionLocation visible.
+Flags:
+ ActionPoints = 0x1,
+ HitPoints = 0x2,
+ RadiationMeter = 0x4,
+ EnemyHealth = 0x8,
+ QuestReminder = 0x10,
+ RegionLocation = 0x20,
+ ReticleCenter = 0x40,
+ SneakMeter = 0x80,
+ Messages = 0x100,
+ Info = 0x200,
+ Subtitles = 0x400,
+ Hotkeys = 0x800,
+ XpMeter = 0x1000,
+ BreathMeter = 0x2000,
+ ExplosivePositioning = 0x4000,
+ CrippledLimbIndicator = 0x8000,
+ HardcoreMode = 0x10000, 
+
+bDelayPostCombatLevelUp
+Adds a 3s delay after combat before the LevelUp menu will show.
+
+bJumpingDoesntDropGrabbedItem
+Stops the grabbed item being dropped when jumping.
+
+bNoMapMarkerAddedPopup
+Disables the Map Marker Added popup.
+
+bGodmodePreventsLegCrippleSound
+Prevents the leg crippled sound in godmode.
+
+bNonSelectablePlayerInConsole
+Prevents the player being selected when clicking in console.
+
+bExtraConsoleDetails (enabled by default)
+Adds extra information when a ref is selected in the console.
+Options (Extra Console Details):
+  bUseFullHelp - show the extra details from the ToggleFullHelp command (attached scripts etc.)
+  bCellName - show the current player cell name at the top left
+  bCellEditorId - show the editor ID of the current player cell at the top left
+  bMeshPath - show the mesh path of the selected ref
+
+bPrintErrorsToConsole
+Print vanilla debug errors to console.
+Options (Logging):
+  bGeneralErrors - print general errors
+  bHavokErrors - print Havok errors
+  bSaveLoadErrors - print save/load errors
+  bGeneralMessages - print various general messages
+  
+bHideMiscQuestItems
+Hide quest items in the misc PipBoy page
+Options (Hide Misc Items):
+  bDontHideStarCaps - show Sunset Sarsaparilla Star caps
+  
+bPickpocketOverhaul
+Alters the pickpocket formula to take into account item weight, target perception and detection value. Note: the game-settings fPickpocketMaxChance and fPickPocketMinChance are still applied.
+Options (Pickpocket Overhaul):
+  bRewardXP - gain XP from successful pickpocketing
+  bShowPickpocketSuccessRate - add the pickpocket success chance to the bottom of the container menu
+Formula:
+	PickPocketChance = fBaseChance + (playerAgility	* fPlayerAgilityMult) + (playerLuck * fPlayerLuckMult) + (playerSneak	* fPlayerSneakMult)
+		- (targetPerception * fTargetPerceptionMult) - (detectionValue * fDetectionValueMult) - (itemValue * fItemValueMult) - (itemWeight * fItemWeightMult))
+  
+  If the item is worn by the NPC, the total chance is multiplied by fWornItemChanceMult.
+
+  XPReward = itemWeight * fItemWeightMult + (itemValue * fItemValueMult) + targetPerception
+
+bRepairsRewardXP
+Earn XP when repairing items.
+Options (Repair):
+  iRepairRewardXP - XP rewarded per item
+
+bKillsRewardAP
+Earn Action Points when killing outside of VATS.
+Options (Kill AP Reward):
+  iKillRewardAmount - AP rewarded per kill
+    
+bNoHUDHotkeyPopup
+Prevent the hotkey wheel showing when holding a hotkey.
+
+bClipSizeMatters
+Prevent firing if you don't have enough ammo for one burst.
+
+bHUDShowRegionNames
+Show interior cell names in the HUD region text where the 'Mojave Wasteland' text is.
+Options (Region Names):
+  bRegionNamesUpdateNearMapMarkers - show the name of map markers when approaching them
+
+bNoCompanionKillXP
+Don't reward XP for companion kills - stops companion's attack damage increasing the 'player dealt damage' used when comparing for iXPDeathRewardHealthThreshold.
+Options (Companion Kill XP):
+  bCompanionHitsCountAfterPlayerDamage - companion hits count towards the iXPDeathRewardHealthThreshold after the player has hit the NPC
+
+bHideAmmoLabel
+Hide the clip/remaining label from the main HUD.
+Options (Clip Rounds):
+  bShowTotalRemaining - show the total ammo count instead of clip/remaining
+
+bNoAPRegenWhileOverencumbered
+Scales AP regeneration while over-encumbered.
+Options (Overencumbered AP):
+  fOverencumberedAPRegenScale - scale applied to the Action Points regen rate while over-encumbered
+  bWhileMovingOnly - only apply the scale while the player is moving
+
+bDisableCharacterRespec
+Disable the character recreation script that runs when leaving the spawn area.
+
+bNoReputationMessages
+Disables the reputation pop-ups and messages.
+Options (Reputation):
+  bHidePopups - prevent the pop-up menus that require being click out of (e.g. Vilified)
+  bHideGainMessages - prevent the top left corner messages when gaining reputation
+  bHideLossMessages - prevent the top left corner messages when losing reputation
+  bHideNonScriptedLossesIfAtMin - prevent loss pop-up and message only if already at the min reputation and if the change was not from a script command
+  bHideNonScriptedGainsIfAtMax - prevent gain pop-up and message only if already at the max reputation and if the change was not from a script command
+  
+bShowInventorySortButton
+Add a button to sort/filter the inventory, specified by menus\prefabs\lStewieAl\SortInventoryButton.xml.
+Use Shift/Control click to cycle through filtering modes.
+Options (Inventory Button):
+  bBarter - add button to the Barter menu
+  bContainer - add button to the Container menu
+  bPipBoy - add button to the Inventory menu
+  iMode
+    0 - Hide by Weight
+    1 - Sort by Weight
+    2 - Hide Quest Items
+    3 - Hide by Weight and Quest Items
+    4 - Hide by Weight and Quest Items and Sort By Weight
+    5 - Sort by Value Per Weight,
+    6 - Show Healing Items,
+    7 - Show Food Items,
+    8 - Show Water Items,
+		9 - Show Radiation Decreasing Items,
+    
+  fHideWeightThreshold - threshold weight for hiding items in Hide By Weight modes
+  bUseAlphaForEnabledIndicator - brighten the sort button while sorting/filtering is active instead of using a separate icon for inactive sorting
+  iControllerHotkey - button to toggle sorting
+  iControllerCycleModeKey - button to cycle through sorting modes
+    5 -  Start
+    6 -  Back
+    9 -  A
+    10 - B
+    11 - X
+    12 - Y
+    15 - LB
+    16 - RB
+    17 - L3
+    18 - R3
+
+bClickingActiveTabTogglesSorting
+Clicking on the current PipBoy inventory tab toggles sorting/filtering.
+
+bAllowRebindNumkeys
+Show the number hotkeys in the Controls menu. Note Darnified UI does not support additional items in this menu due to a bug.
+
+bDisableHUDCrippledLimbIndicator
+Prevents the vaultboy showing on the HUD when a limb is crippled (not the 'LMB' text).
+
+bConsoleBackground
+Adds a background to the console, specified by menus\prefabs\lStewieAl\ConsoleBackground.xml.
+
+bIndividialItemStats
+Show weight and value for an individual item when viewing stacks of items, instead of the entire stack's weight/value.
+
+bOnlyAllowWaitWhileSitting
+Only allow waiting while the player is sat down or in godmode.
+Options (Sleep Wait):
+  bSitWaitShowMessage - show a message when waiting is prevented
+
+bAddRGBSliders
+Add RGB sliders for the main HUD color to the settings menu. Note Darnified UI does not support additional items in this menu due to a bug.
+Options (RGB Sliders):
+  bTerminalsUseHUDColor - make terminals copy the HUD color
+
+bShowCurrencyInContainers
+Show faction currencies in the misc page for containers, and show Caps in the PipBoy misc tab.
+
+bHideGrenadeIndicatorForNoDamageExplosions
+Hide the grenade indicator for projectiles whose explosions do no damage.
+
+bUnspokenNPCIndicator
+Add a * to the prompt for NPCs who haven't been spoken to.
+
+bNoScaleNpcDamageThresholdByCondition
+Don't scale NPC armor damage threshold based on condition.
+
+bNoScaleNpcDamageResistanceByCondition
+Don't scale NPC armor damage resistance based on condition.
+
+bNoScaleNpcDamageByCondition
+Don't scale damage by NPCs based on their weapon condition.
+
+bSortUnavailableRadiosToBottom
+Fix a vanilla bug where unavailable radios aren't sorted to the bottom of the list.
+
+bRemoveFollowerTopics
+Prevents companions saying when they are injured, needing ammo, weapons etc.
+
+bDisableTutorialMessages
+Disables hard-coded one-time tutorial menu messages, e.g. hacking, lockpick, PipBoy. Does not disable non-hardcoded messages such as "Press V to use VATS" etc. 
+
+bBarterCheckActorBuySellFlags
+Make vendors obey their Buy/Sell flags, hiding items the vendor doesn't accept.
+
+bKeepSelectedConsoleRef
+Remembers the selected ref when closing the console (provided it is still loaded).
+
+bNoFastTravelTimeChange
+Don't progress time or hardcore needs when fast traveling.
+
+bSleepInOwnedBeds
+Allow sleeping in owned beds.
+
+bDetectedByWhom
+Show the names of actors detecting you while sneaking, e.g. Replaces [DETECTED] with [Detected by: Easy Pete, Sunny Smiles, and 2 others]
+Options (Detected By Whom):
+  iMaxNameCount - names to display before showing "and N others"
+
+bRunningCostsAP
+Adds an Action Points cost for running.
+The formula is: apCost = fAPDrainCostBase + ((Endurance - 5) * fRunAPEnduranceMult).
+apCost action points are removed every iAPDrainIntervalMS milliseconds.
+Options (Running Costs AP):
+  fAPDrainCostBase - base action points cost
+	fRunAPEnduranceMult - endurance multiplier
+	iAPDrainIntervalMS - time between AP reductions
+	bAllowRunWithoutEnoughAP - always allows running, preventing AP gain when at 0
+
+bHideCompletedQuests
+Don't display completed quests in the PipBoy Quests tab.
+
+bHoldWaitKeyToShowMenu
+Makes the sleep/wait button require to be held instead of instantly showing when pressed.
+Options (Wait Key):
+  iKeyHoldTimeMS - time the wait key must be held before the wait menu is shown
+
+bUseFallout3AudioDistortion
+Use a distortion algorithm similar to the one in Fallout 3 for NPCs wearing masks (sounds more metallic and less muffled)
+
+bKeepXPBarWhenClosingMenus
+Stops the XP bar being hidden when closing a menu (e.g. Hacking, Dialog or Lockpicking)
+
+bPickLocksWithoutSkill
+Allow picking locks of any level.
+
+bHackTerminalsWithoutSkill
+Allow hacking terminals of any level.
+
+bTurnFurtherWhileSeated
+Increase the maximum rotation while seated to -115° <-> 115° (from vanilla -90° <-> 90°) in first person, and full 360° in third person.
+
+bLootUnconsciousVictims
+Allows unconscious actors to be looted.
+
+bColorRecentlyAddedMapMarkers
+Show map markers added this session in red. Map markers given to you are displayed in red until the save is reloaded.
+
+bOpenPipboyToInventoryByDefault
+Makes the PipBoy always open to the inventory page when the MenuMode key is pressed (F1/F2/F3 still navigate to their respective categories).
+
+bShowWeaponAmmoUseInMenus
+Show the ammo used per shot when viewing a weapon in the inventory. e.g. when viewing a Tri-Beam Laser Rifle, the ammo display will be "MF Cell x 3".
+
+bNoPlaceMarkerPopup
+Don't show the Place/Remove marker when placing markers on the map.
+Options (Place Marker Popup):
+  bPlaceMarkerShiftToReset - makes right clicking always place the map marker (instead of toggling it being placed/removed). If shift is held while clicking, the marker will be removed.
+
+b24HourSleepWaitClock
+Changes the sleep/wait clock to be in 24 hour format.
+
+b12HourPipboyClock
+Changes the PipBoy clock to be in 12 hour format.
+
+bContainerRespawnsMessage
+Adds a warning in the subtitles bar if the opened container is set to respawn.
+Options (Container Respawn Warning):
+  sWarningText - warning message shown on containers that respawn
+
+bLocalMapRespawnedCellIndicator
+Show respawned cells as red, and visited cells as white on the local map.
+Options (Respawned Cell Indicator):
+  bColorRespawnedCells - color respawned cells in red
+  bColorUnvisitedCells - color unvisited cells in white
+
+bNoPlaceMarkerPopup
+Don't show the Place/Remove marker when placing markers on the map.
+
+bBetterPickupPrompt
+Show the value and weight for a whole stack of items while looting and indicate the weight in red if it would overencumber you.
+
+bHideEquippedItemsInBarter
+Hides equipped items in the barter menu.
+
+bHideEquippedItemsInContainers
+Hides equipped items in the containers.
+
+bNoFoodWornOffMessage
+Prevents the 'worn off' message for food items.
+
+iDateFormat
+Use a custom date format for the PipBoy and Sleep/Wait menus.
+Values - 0: MM.DD.YY, 1: DD.MM.YY, 2: YY.MM.DD
+
+bQuestTextVisibleWhileAiming
+Stops the quest/location texts being hidden when aiming.
+
+bAllowTeammatesUseMeltdown
+Allow teammates to use the meltdown effect if the player has the Meltdown perk.
+
+bNoSelfExplosionDamage
+Prevents damage from your own explosions (NPCs can still harm themselves).
+
+bHoldToActivate
+Hold the activate key instead of pressing it to activate various objects:
+Options (Activate Key):
+  bContainers - looting and searching NPCs
+  bFurniture - interacting with furniture (includes beds)
+  bWater - drinking from a tap or puddle
+  bCrafting - campfires, crafting benches and reload benches
+  bTakeItemsWhileKeyHeld - takes items while the activate key is held (doesn't activate containers, NPCs etc.)
+   iActivateKeyTakeItemsHoldTimeMS - delay before items will be taken with bTakeItemsWhileKeyHeld
+   bAutoPickupEncumbranceThreshold  - prevent auto-pickup of items that would encumber the player, unless the player is already encumbered
+  bStealing - delay stealing the first item within iStealTimerMS milliseconds
+  iStealTimerMS - interval (in milliseconds) after stealing where no delay is required to steal again
+
+bRememberPipboyScrollPositions
+Store PipBoy scroll positions between sessions (per save).
+
+bNoWeaponConditionDamagePenalty
+Weapons always deal their max damage regardless of condition.
+
+bPlayerMeleeDamageIgnoresScale
+Makes the player's melee damage independent of their height/scale.
+
+bHideMapMarkerFactionReputation
+Hide the faction reputation from map markers on the world map.
+
+bCompareWeaponStats
+Show - and + on weapon DPS/DAM relative to the equipped weapon.
+
+bSleepWaitAnywhere
+Allow sleeping/waiting anywhere.
+Options (Sleep Wait Anywhere):
+  bCombat
+  bInRadiation
+  bMidair
+  bTakingDamage
+  bUnderwater
+  bTrespassing
+
+bNoInteriorBlackLoadingScreen
+Remove the black loading screen when loading an interior cell, and prevent actors being faded in.
+Options (Interior Transition):
+  bFadeIn - fade the edges of the screen based on the fFadeToBlackFadeSeconds game-setting
+
+bCharacterMeleeDamageIgnoresScale
+Stops NPC and player scale affecting their melee damage.
+
+bSkipSkillMenuIfNoPointsToAssign
+Skip the assign skill points screen if you have no points to assign but have perks to assign.
+
+bCustomArmorConditionPenalty
+Allow a custom scale applied to armor DR/DT based on their condition.
+Formula: dtScale = (health > 0.5 ? 1 : (1 - (0.5 - health) * fScale))
+Options (Armor Condition Penalty):
+  fScale - scale applied to DR/DT when below the condition threshold
+
+bHittingWeaponsDoesntDamageThem
+Prevents player and enemy weapons being damaged when shot at.
+
+bNoExteriorLoadScreens
+Removes load screen backgrounds when exiting interiors (intentionally excludes when loading a save).
+
+bUltrawideSupport
+For ultrawide (21:9) fixes the bugs: 
+- The size of the "Fade-to-black" transition now takes up the entire screen instead of a small rectangle (as seen when loading a save or transitioning between areas).
+- Adjusts the FOV for various rendered menus such as the Vigor Tester, Terminal and LockPick menus, and the HUDMainMenu for scope zoom. This fixes the menus being too zoomed in.
+Options (Ultrawide Support):
+  fMenuFOVScale - scale applied to menus/scope. Vanilla uses 0.75.
+  
+bWeightlessWornArmor
+Armor is weightless while worn.
+
+bCharacterNonMeleeDamageIgnoresScale
+Stops NPC and player scale affecting their non-melee damage.
+
+bPlayerNonMeleeDamageIgnoresScale
+Stops player scale affecting non-melee damage.
+
+bWeightlessAidItems
+Makes aid items weightless in non-hardcore.
+
+bWeightlessItems
+Makes items weightless (by category).
+Options (Weightless Items):
+  bArmor
+  bAid
+  bAmmo
+  bWeapons
+  bMisc
+  
+bHideCrosshairInFirstPerson
+Hides the crosshair in first person (keeping it in third person).
+
+bNoCasinoBans
+Prevents bans from casinos.
+
+bNoSneakAttacksCriticals
+Disables sneak attack criticals by the player.
+
+bNPCsCanSneakCritPlayer
+Allows NPCs to land sneak attack criticals on the player and on each other.
+- can be used alongside bNoSneakAttacksCriticals (making it "No Player Sneak Attack Criticals")
+
+bNPCsCanDisarmPlayer
+Allows NPCs to disarm the player.
+
+bSneakCriticalsOnlyMeleeWeapons
+Only allow sneak attack criticals with melee weapons.
+
+bShowQuestAndNoDRDTItemsInRepairMenu
+Unhide quest items and armors with no DR or DT from the repair services menu.
+
+bDisableGodmodeOnLoad
+Disables godmode when loading/reloading a save.
+
+bInvertContainerTitleScrollwheelDirection
+Inverts the direction of category change when using scroll-wheel on a container's title.
+
+bHUDFatigueIndicator
+Adds a fatigue indicator similar to the FOD and H2O labels in hardcore.
+
+bAllowWeaponHotkeysAndPipBoyWhileReloading
+Allows switching weapons using weapon hot-keys, and opening the PipBoy while reloading.
+
+bNoDisarmCompanions
+Prevents companions being their weapons in combat.
+
+bAllowFiringWhileLanding
+Allows firing weapons while lower body animations are playing.
+
+bFireWhileAiming
+Allows firing weapons while aiming in and out.
+
+bDontAllowConsoleTillLoadingIsDone
+In vanilla it's possible to load a save using the console before settings (e.g. disable controller) have been loaded, this prevents opening the console till this loading has finished.
+
+bPowerAttackWhileOverencumbered
+Allow melee power attacks while overencumbered.
+
+bSlowBreathRegen
+Slowly regenerate the H2O meter when not underwater instead of instantly refilling it when resurfacing.
+Options (Water Breath):
+  fBreathRegainRate - rate at which breath is restored to max - setting to 1.0 restores the entire bar in 1 second, 0.5 in 2 seconds etc.
+  bShowBreathMeterOutOfWater - show the breath meter when not underwater if it's not 100%
+
+bNoteMenuShowSeparateMenu
+Show the scroll menu when clicking on a note in the PipBoy (requires textures and XML from Book Menu Restored).
+Options (Note Menu):
+  bRequireShiftHeld - require the shift key to be held to show the note menu
+
+bDontSetQuestWhenObjectivesAdded
+Don't set the current quest when gaining a new objective when you have no quest active.
+
+bSpinWeaponsSoundFix
+Fixes a bug where looping attack weapons would not play their attack sound when briefly stopped. 
+For example in the base game, tapping and then holding the fire button with the Flamer or Mini-gun held would result in no fire sound playing.
+
+bTurnSlowerWhileAiming
+Scale look rotation speed while aiming.
+Options (Turn Speed):
+  fAimingScaleX - scale applied to X axis rotation while aiming
+  fAimingScaleY - scale applied to Y axis rotation while aiming
+
+bShowSneakLabelWhileStanding
+Show the [Sneak] indicator while standing.
+
+bVATSAutoTargetHead
+Automatically target the head when entering VATS.
+
+bOnlyChangeCameraHeightIfPOVKeyHeld
+Scrolling only changes camera height if the 'Change View' key is held.
+
+bCompareArmorStats
+Show - and + on armor DT and DR relative to the equipped armors.
+
+bAllowVATSWhileAnimsPlay
+Allow entering VATS while animations play (e.g. while jumping).
+
+bRobotCompanionsHealWithScrapMetal
+Heal robotic companions with scrap metal instead of stimpaks.
+Options (Robot Companion Healing):
+  fBase - base health restored per scrap metal
+  fRepairMult - bonus health restored per player repair skill
+  fRoboticsExpertBonus - bonus health restored if the player has the robotics expert perk
+  
+bCustomScreenshotFormat
+Automatically convert taken screenshots into various formats. Currently supported formats are: jpg, tiff and bmp.
+Options (Screenshot Format):
+  bCopyToClipboard - copies the screenshot to the clipboard
+	sExtension - file format (jpg, tiff, png or bmp)
+	iJpgQuality - jpg quality (0-100)
+	sTiffCompression - tiff compression (None, Rle, LZW)
+	iTiffColorDepth - tiff color depth (1, 4, 8, 24 or 32)
+
+bModConsolePrintsIncludeName
+When a mod prints to the console, prepend the [Modname] to the text. Optionally print the formid of the script that printed it.
+Options (Mod Console Prints):
+  bIncludeScriptID - prepend the script ID instead of the mod name
+
+bScaleRadioSongVolumeDuringDialogue
+Scale the volume of radio songs while in conversation with an NPC.
+Options (Radio Volume):
+  fDialogueSongVolumeMult - multiplier applied to song volume during dialogue
+
+bScaleMusicVolumeDuringDialogue
+Scale the volume of ambient music while in conversation with an NPC.
+Options (Music Volume):
+  fDialogueMusicVolumeMult - multiplier applied to music volume during dialogue
+
+bUseFirstPersonEmptyClipSound
+Use the first person empty clip sound in third person (it's louder).
+
+bMenuSearch
+Add Control F to search various menus.
+Options (Menu Search):
+  bMapMenu - MapMenu (Local Map, World Map, Quests, Notes, Challenges and Radio)
+  bInventoryMenu - InventoryMenu (PipBoy)
+  bStatsMenuSearch - StatsMenu (Effects, Skills, Perks, Reputations, Misc Stats)
+  bBarterMenuSearch - BarterMenu
+  bContainerMenuSearch - ContainerMenu
+  bLevelUpMenuSearch - LevelUpMenu (perks)
+  bRecipeMenuSearch - RecipeMenu
+  bSaveMenuSearch - StartMenu save/load 
+  bRemoveFilterWhenClosingSearch - refresh the menu when closing the search (set to 0 if you want to use keyboard hotkeys to navigate filtered menus)
+  bClearInputWhenReopeningSearch - clear the input string when focusing the search-bar, forced to 1 if bRemoveFilterWhenClosingSearch is also 1
+  bQuestIncludeObjectives - also search objective text when filtering quests
+  bQuestIncludeCompletedObjectives - include completed objectives if bQuestIncludeObjectives is enabled
+  
+bAllowKeyboardAndMouseWithControllerConnected
+Allow use of keyboard and mouse to move around (excludes menus) while a controller is connected.
+
+bScaleCriticalDamage
+Multiply critical damage for all weapons.
+Options (Critical Hits):
+  fCriticalDamageMult - multiplier applied to weapon damage for critical hits
+
+bCookableGrenades
+Holding grenades decreases their detonation timer.
+Options (Cookable Grenades):
+  bDisableGrenadeDistanceIncrease - always throw grenades the same distance regardless of time held
+  bOvercookedGrenadesExplode - overcooked grenades will explode in your hand
+  fMinGrenadeTimer - minimum detonation timer for thrown grenades
+  bPlaySound -  play a sound every second a grenade is held
+  bTimerCountdown - play the sound for the last 3 seconds of the timer
+  sSoundName - editor ID of the sound to play
+  sSoundNameAlt - editor ID of the sound to play for the final second when using countdown
+
+bUseConsoleOutputFile
+Automatically set the console output file.
+Options (Console Output):
+  sFilename - the name of the output file e.g. ConsoleOut.txt
+  
+bCacheQuestAndNoteMenu
+Speed up the quest and note menus by only recreating them if your quest/notes state has changed, and not creating the challenges list if you're viewing the notes tab.
+
+bKeepHolotapePlayingWhenSelectingOtherNotes
+Don't stop the current holotape's audio when clicking on other (non-audio) notes.
+
+bSmoothIronsightsCameraTransition
+Smooth the ironsights animation by interpolating between the non-aiming and aiming camera positions.
+Options (Smooth Iron Sights Camera):
+	iAimTransitionTimeMS - time taken to transition between the camera positions
+	iEasingFunction - which easing function will be applied to the movement (see https://easings.net/)
+    - 0: None
+    - 1: OutSine
+    - 2: OutCirc
+    - 3: InOutSine
+    - 4: InOutCirc
+    - 5: OutQuart
+		- 6: InOutQuart
+
+bDisableNeedsMessages
+Prevents the messages when hardcore needs and radiation levels increase/decrease.
+Options (Disable Needs Messages):
+  bRadiation
+	bHunger
+	bDehydration
+	bSleep
+
+bCrouchWhileEquippingWeapons
+Allows crouching while (un)equipping weapons, the crouch animation is queued after the equip.
+
+bRecentlyDeadNPCIndicator
+Shows recently killed NPCs on the compass until they have been moused over.
+Options (Recently Dead NPC Indicator):
+  iDeadActorMaxTimerMS - maximum time an NPC tick will be shown for after their death
+  bPlayerOrTeammateKillsOnly - only show NPCs killed by the player or companions
+  uRGB - color of indicators in hexadecimal
+
+iHUDMaxCompassNPCTicks 
+Set the maximum NPCs to show on compass, overriding the vanilla gamesetting and allowing more than the vanilla maximum of 10.
+
+bControllerBackButtonDoesntClosePipBoy
+Prevents the Back button closing the PipBoy.
+
+bAutoWeaponNoFiringDelay
+Allows firing automatic weapons even if they are animating already (e.g. miniguns spinning up).
+Options (No Firing Delay):
+  bIncludeHeavyWeapons - ignore the need for heavy weapons (animation type >= 8) to spin up before firing
+
+bMinBloodSplatterHealthDamage
+Only show blood splatters if their damage is above a minimum health damage threshold.
+Options (Blood Splatters):
+  fMinHealthDamage - minimum health damage of an attack for blood splatters to show
+
+bVATSStopBurstIfTargetDead
+Stop firing the current burst in VATS if the target is already dead, e.g. the 10mm SMG which fires 3 rounds in a burst in VATS
+
+bHoldAndReleaseThrowables
+Allows hold/releasing for throwables similar to grenades.
+Options (Holdable Throwables):
+  bMineSupport - allow holding mines before throwing them
+
+bAllowSleepWaitWithReducedMaxHealth
+Allows sleep/waiting while max health is reduced by effects - making it possible to sleep with a temporary effect like -50hp, while still preventing sleeping while taking damage.
+	
+bLevelDifferenceAffectsCombatXP
+Makes kill XP depend on the level difference between the player and killed actor.
+Formula: iXPRewardBase + (killedLevel - playerLevel) * fXPLevelDifferenceScale
+Options (XP Formula):
+  iXPRewardBase - base XP rewarded for all kills
+  fXPLevelDifferenceScale - additional XP rewarded per point of level difference between player and killed actor
+
+bSwapAmmoWithWeaponHolstered
+Allow swapping ammo types while weapon is holstered.
+
+bPowerArmorNeedsNoTraining
+Allows wearing power armor without the Power Armor Training perk.
+
+bColoredHUDBars
+Colors the HP and AP bars red when they are low. Note that temporary effects that raise max HP will show the bar in red at a higher percentage, this is intended to indicate that your health will be low when the buff wears off.
+Options (Colored HUD Bars):
+ fRedHealthThreshold - threshold ratio of current/max Health for coloring HP bar red
+ fRedActionPointsThreshold - threshold ratio of current/max Action Points for coloring AP bar red
+
+bSpeedMultScalesJumpHeight
+Scale NPC and player jump height based on their speedmult actor value.
+
+bStealingSendsNoAlarm
+Don't alert actors when stealing their items (excludes pickpocketing).
+
+bSneakCriticalsHeadshotsOnly
+Only allow sneak attack criticals to the head.
+
+bSortPipboyNotes
+Sort the PipBoy Notes tab alphabetically, and/or by whether they're read.
+Options (Note Sorting):
+  iNoteSortingMode:
+    0 - Alphabetical
+    1 - Unread notes first
+    2 - Unread first, alphabetically
+
+bSortPipboyQuests
+Sort the PipBoy Quests tab.
+Options (Quest Sorting):
+  iQuestSortingMode:
+    0 - Alphabetical
+    1 - Uncompleted quests first
+    2 - Uncompleted first, alphabetically
+
+bDisableAchievements
+Disables steam/gog achievements.
+
+bShowWeaponPoisonEffects
+Include weapon poison effects when viewing weapons in the PipBoy.
+
+bHideUnavailableRadios
+Hide unavailable radios in the PipBoy.
+
+bStatsMenuPercentageXP
+Show XP in the Stats Menu as a percentage.
+
+bUnequipWeaponMods
+Allow unequipping weapon mods from the Item Mod Menu, additionally hide duplicates and sort mods alphabetically.
+Options (Weapon Modding): 
+  bHideModButtonForNonModdableWeapons - hide the Mod button if a weapon cannot have weapon mods
+  bItemModMenuShowUnownedMods - show unowned weapon mods in the menu
+  sRemoveItemModSound - editor ID of the sound to play when removing weapon mods (note: VUI+ has its own sounds that it plays when you click on weapon mods)
+  bRequireWorkbench - only allow weapon modding if at a workbench
+
+bDifficultyDoesntAffectNPCToNPCDamage
+Stops NPC-NPC damage using the fDiffMultHPByPC gamesetting, with multipliers for NPC/teammate damages. Companion<->companion damage uses fDamageToTeammateMult.
+Options (NPC Damage):
+  fNPCToNPCDamageMult - multiplier applied to damage from one NPC to another
+  fDamageByTeammateMult - multiplier for damage dealt by companions to NPCs
+  fDamageToTeammateMult - multiplier for damage dealt to companions by NPCs
+
+bDisableCombatMusic
+Prevents combat music playing.
+
+bKeepBrokenItemsEquipped
+Prevent the message when a weapon breaks and keep it equipped.
+
+bPickpocketWornItems
+Allow pickpocketing items NPCs have equipped.
+
+bMoveDuringVATSPlayback
+Allow movement during VATS killcams.
+
+bClickingShowsTerminalText
+Make clicking while a note is being displayed on a computer first show the rest of the page, or skip to the next page if the current page is fully displayed.
+
+bInvertPipboyRepairMenuSorting
+Place high condition items at the bottom of the repair list.
+
+bSortRepairServicesMenu
+Sort worn items to the top of the repair services menu, then alphabetically and by condition.
+
+bDisableRegionBordersKeepMessage
+Allow movement outside world borders, showing the 'Leaving Region' warning repeatedly. Functionally equivalent to adding bBorderRegionsEnabled = 0 under [General] in FalloutCustom.ini, but retains the ui warning.
+
+bNoRecurringChallenges
+Prevents 'recurring' challenges from resetting their progress when completed.
+
+bRecurringChallengeIndicator
+Adds an indicator that a challenge is recurring when viewed in the PipBoy. "(Recurring)" appears beside the progress e.g. 4/10 (Recurring)
+
+bCustomSubtitleDistance
+Modify how far away general subtitles are shown. For long distances you may need to increase the iSpeakSoundLipDistance gamesetting from its default of 750.
+Options (Subtitles):
+  fSubtitleDistance - distance to show subtitles from - vanilla is 500 units
+  
+bScopeVisibilityDelay
+Delay the display of scopes when aiming in, and optionally prevent scoped aiming while reloading.
+Options (Scoped Weapons):
+	iScopeVisibilityDelayMS - required aiming time before the scope overlay is applied
+	bStopAimingWhileReloading - aim out while reloading or weapon is jamming
+  bAlwaysShowWeaponAnimation - forces the 'uses 1st person iron sights anims' flag on all weapons
+  bDelayInThirdPerson - delay scopes in 3rd person
+  
+bLocationDiscoveredCornerMessage
+Display the location discovered text as a corner message as in Fallout 3.
+
+bNoHealingInCombat
+Prevent use of aid items that heal HP or limbs while in [Danger].
+	
+bHideRanksInTraitMenu
+Hide 'Ranks' in the description for traits in the Trait menu, since it's a holdover from the LevelUp menu perk selection screen.
+
+bSortPerkMenu
+Sort the LevelUp Perk Menu.
+Options (Perk Sorting):
+  iPerkSortingMode:
+    0 - Alphabetical
+    2 - Available first, alphabetically
+
+bLessRestrictiveVATSMenu
+Allow dequeuing actions and exiting vats while zooming in/out.
+
+bNoTurningAnim
+Suppress player turning animations to prevent the glide when stopping while turning.
+
+bCustomAddToInventoryMessageTimer
+Customise the length of time the 'Added to inventory' message is shown.
+Options (Message Times):
+  fAddItem - time the 'added to inventory' message is shown (in seconds)
+  
+bHideRedCrosshairOnDistantInvisibleTargets
+Prevent the red crosshair when mousing over invisible enemies in the distance.
+
+bRememberWeaponAmmos
+Remember ammo type and count (optional) for all player weapons. Data is stored in the vanilla save, and is removed if loading without the tweak active, or if the weapons are deleted/unloaded.
+Options (Remember Weapon Ammos):
+  bInventoryOnly - forget stored ammo/type when weapons are dropped or transferred (to decrease save size)
+  bIncludeCount - remember ammo count as well as type (regenerating ammo weapons always have their count stored)
+  
+bFatalNonSneakCritsAlwaysGib
+Make fatal non-sneak critical hits always explode or dismember limbs.
+Options (Critical Hits Gib):
+  bOnlyCritsGib - prevent non-critical hits exploding or dismembering limbs
+  
+bNoFreeBarterItems
+Set a price for 'free' items (e.g. ammo casings), calculated after barter buy/sell multipliers.
+Options (Barter Items):
+  fFreeItemCost - cost for buying items with no value
+  
+bLocationalMeleeDamage
+Make melee and unarmed damage use limb damage multipliers.
+Options (Melee Locational Hits):
+  bPlayerAttacks - use hit multiplier for attacks by the player
+	bNonPlayerAttacks - use hit multiplier for attacks by NPCs on the player
+  bNpcToNpcAttacks - use hit multiplier for attacks on NPCs by NPCs
+
+bQueueWeaponHolsteringWhileAnimsPlay
+Pressing holster weapon while animations play will holster when the anims finish, instead of doing nothing as in vanilla.
+
+bNoLockFailedTerminals
+Don't lock terminals when they are failed.
+
+bDelayPostCombatReputationPopup
+Delay the reputation change popup dialog till 3 seconds after combat.
+
+bNoPlayerNameLimit
+Remove the limit on the number of characters in the player's name.
+
+bSkipVigorTesterSpecialPages
+Skip to the vigor tester review page.
+
+bGrabbingItemsIsCrime
+Make grabbing owned items carry the same faction penalty as stealing.
+
+bCustomSpecialPoints
+Set a custom number of SPECIAL points to allocate, minimum is 7 (one in each skill).
+Options (SPECIAL Points):
+  iNumPointsToAllocate - total SPECIAL points after distributing points from the Vigor Tester or Special Book (TTW).
+
+bAllowWeaponHotkeysWhileFiring
+Use weapon hotkeys while firing.
+
+bMoveDuringOpenPipboyAnim
+Allow movement during the open PipBoy animation.
+
+bHipFireAnimsWhileScoped
+Use non-ironsight anims and recoil patterns for scoped weapons to prevent weapons lingering in your face when un-scoping after firing.
+Note that this requires alternate animations as the hip fire recoil patterns for some weapons - e.g. the Scoped Varmint Rifle - look awful while scoped.
+
+bRestore2Hotkey
+Restores the '2' weapon hotkey. Requires "Data/menus/prefabs/lStewieAl/2Hotkey.xml". Controller users will need to bind ammo swap some other way (e.g. using bDoubleTapReloadToChangeAmmoType).
+Options (Weapon Hotkeys):
+  iSecondSlotKey - scancode of the keyboard hotkey
+
+bEncumbranceIncludesGrabbedItems
+Include the weight of the grabbed ('Z' key) item stack weight when determining if player is overencumbered.
+
+bUseAnimVariants
+Allow use of anim variants, similar to firing animation variants - requires both 1st and 3rd person animation files.
+Options (Anim Variants):
+  bReloads - allow reload variations
+  bEquips - allow equip/unequip variations
+  bAims - allow aim/aimIS variations
+	
+bCustomHackingAnswerLength
+Use a custom formula for hacking answer length.
+Options (Hacking Formula):
+  fBaseWordLength - base word length
+	fDifficultyWordLengthMult - multiplier applied on difficulty before adding to word length
+	fComputerWhizLengthBonus - characters removed from answer if you have the computer whiz perk
+	fOddTerminalIDBonus - characters added to answer if terminal ref ID is odd
+	iMaxWordLength - maximum answer length (maximum 12)
+	iMinWordLength - minimum answer length (minimum 2, note: there aren't many words in the hacking dictionary.txt file that are two characters long)
+	iMinAttempts - minimum guesses
+	iMaxAttempts - maximum guesses
+
+bNoCompassPipsIfNotInDanger
+Hide all NPCs on the compass if you aren't in [Danger].
+
+bForceHiResWeaponModels
+Use 1st person (high-res) models for NPCs' weapons.
+
+bShowDoorsOnCompass
+Show nearby doors on the compass.
+Options (Compass Doors):
+  iExteriorMaxDistance - maximum distance to show doors in exteriors
+	iInteriorMaxDistance - maximum distance to show doors in interiors
+	bVisitedIndicator - color the doors of visited cells (excludes doors leading to worldspaces)
+	bFadeIconByDistance - scale the door icon's alpha based on distance to the player
+	uVistedRGB - visited cell red/green/blue color in hexadecimal, e.g. 0xFF0088
+
+bCriticalHitMessagesIncludeLimbName
+Include the limb name in critical hit messages. e.g. 'Critical strike on Easy Pete's Torso'
+
+bMenuFadesIgnoreTimescale
+Make menu fading in/out ignore timescale.
+
+bActivatingDoesntStandUp
+Make activating while using furniture not stand up, instead use movement to stand while seated.
+
+bNoSkillMessageIfIncreaseIsZero
+Prevent the 'skill increased by 0' if reading a book with no bonus.
+
+bCompassFadeLeftSide
+Fade icons for NPCs, doors etc. on the left side of the compass. Useful if using a centered compass.
+
+bConsoleTextShadow
+Darkens the console output text and adds a faint shadow for readability.
+
+bMinigamesPlayXPSoundAtMaxLevel
+Play the XP gained sound when hacking or lockpicking at max player level.
+
+bVATSHipFire
+Entering VATS while not aiming will shoot from the hip for all shots fired (does not affect accuracy).
+
+bAlternateLevelupSounds
+Play an alternate levelup sound every A or B levels. If A is a multiple of B, the larger number wins ties. 
+Options (Alt Levelup Sound):
+  iLevelA - Play sSoundA every iLevelA levels
+	iLevelB - Play sSoundB every iLevelB levels
+	sSoundA - editor ID of sound to play every iLevelA levels
+	sSoundB - editor ID of sound to play every iLevelB levels
+For example with iLevelA = 2 and iLevelB = 3:
+Level 2: - Sound A
+Level 3: - Sound B
+Level 4: - Sound A
+Level 5: - vanilla
+Level 6: - Sound B (matches both iLevelA and iLevelB, but iLevelB is larger)
+
+bReloadJamsAffectedByAgility
+Make reload jams affected by reload speed multipliers.
+
+bRunSlowerInWater
+Scale movement speed when walking/running through water depending on much you are immersed.
+Options (Water Scales Movement Speed):
+  fWadingMovementMult - max movement speed penalty when wading through water
+
+bPipboyLightAndHolsteringIgnoreTimescale
+Make using PipBoy light or holster hotkeys not take longer when time is slowed down.
+
+bHostilesUseNeutralColorOnCompass
+Make hostiles on the compass use the HUDMain color instead of HUDAlt (red).
+
+bAgilityScalesJumpHeight
+Scale jump height based on agility.
+Formula:
+  jumpHeight = 1 + ( fAgilityMult * (agility - 1) )
+Options (Agility Affects Jump Height):
+  fAgilityMult - multiplier added per agility point above 1
+
+bUsingKeysRewardsXP
+Gain XP when using keys on locks.
+Options (Key XP Reward):
+  iUseKeyRewardXP - XP rewarded for using a key on a container/door
+
+bAnimDebugging
+Prints which anims are currently active into the top left of the console {you can type ToggleDebugText (TDT) to see console output with the console closed}.
+
+bPartialReloads
+Add support for 'partial' reload anims when reloading with a non-empty clip. Makes the game select animations ending in '_partial' for the player if their clip is empty.
+
+bNPCsEarnAmmoCasings
+Make NPCs earn ammo casings when firing their weapons.
+
+bDrowningDrainsAP
+Drain action points before taking damage when drowning.
+
+bFasterEnterLockpickMenu
+Speed up the animation for entering the lockpick menu.
+
+bPreventInactiveWindowScrolling
+Prevent scroll-wheel affecting windows outside NV.
+
+bAddItemUsesItemIcon
+Use the item icon (if it exists) in 'added to inventory' messages (you will need an icon replacer or they will be off-centered), instead of always using the gift icon.
+
+bAllowWeaponHotkeysWhileEquipping
+Allow use of weapon hotkeys while switching weapons.
+
+bShowNearestUndiscoveredLocation
+Always show the nearest undiscovered location on the compass or map.
+Options (Show Closest Location):
+  bMapMenu - show the closest undiscovered location on the map
+  bCompass - show the closest undiscovered location on the compass
+
+bItemCycleUpDownHotkeys
+Use left/right controller d-pad to cycle through hotkeyed weapons.
+
+bRepairRequiresWeaponSkill
+Disallow repairing if repair skill is less than the weapon's skill requirement. i.e. you need 75 repair skill to fix a weapon that requires 75 energy weapons skill.
+
+bMaxVATSDistanceUsesWeaponRange
+Use the player's weapon max range to determine the max VATS targeting distance - e.g. you can target enemies further with a sniper rifle than a 9mm pistol.
+Options (VATS Uses Weapon Distance):
+  fMaxDistance - maximum range to check for targets
+	fMinDistance - minimum range to check for targets
+	fRangeMult - multiplier applied to the weapon's max range
+
+bLessFrequentPlayerPainSounds
+Add a minimum interval between player pain sounds.
+Options (Combat Sounds):
+  iMinPlayerPainSoundIntervalMS - minimum time between player pain sounds in milliseconds
+  
+bMoreFrequentNPCLightUpdates
+Calculate actor light levels (used for sneaking) more frequently - may incur a minor performance penalty if the interval is too low.
+Options (Detection Light Timer):
+  fIntervalTimer - time between updates (in seconds), vanilla is 3 seconds
+
+bBetterMapZoom
+Makes zooming in the local and world map center on where the cursor is instead of the middle of the screen.
+
+bLockPickMenuKeyboardMovement
+Use left/right movement to control the bobby pin, and jump and forward/back to spin the screwdriver.
+Options (Lockpick Menu Movement):
+  fBaseSpeed -  base speed for left/right bobby pin movement
+  fShiftScale - scale applied to movement speed while shift is held
+  fCtrlScale - scale applied while ctrl is held
+
+bSavingDoesntClosePauseMenu
+Keep the pause menu open after saving the game.
+
+bContainerMenuStoreAllHotkey
+Hold shift to store all visible (i.e. not filtered out via category/menu search etc.) items from the left hand side into the current container.
+
+bContainerTakeAllDoesntCloseMenu
+Prevent the 'take all' button closing the container.
+
+bTakeAllConfirmation
+Show a confirmation message when taking all items from a container.
+Options (Take All Confirmation):
+  sMessageText - confirmation message for taking all items
+	iMinItemCount - minimum number of items for the message to appear
+
+bBloodyMessGibTargetedLimbOnly
+Prevents bloody mess dismembering/exploding limbs that weren't hit. In vanilla there's a random chance an npc's limb is removed when shooting their torso.
+
+bDeselectHotkeys
+Makes it possible to remove a hotkey for an item by attempting to assign it the slot it has already.
+
+bSortRecipeMenu
+Sort the recipe menu.
+Options (Recipe Sorting):
+  iRecipeSortingMode:
+    0 - Alphabetical
+    1 - Craftable recipes first
+    2 - Craftable first, alphabetically
+    3 - Sort recipes whose skills requirements are met first
+
+bReloadSoundsAffectedByTimescale
+Scale reload sound pitch and length based on the game time multiplier (e.g. while using turbo).
+
+bNoPoisonConfirm
+Remove the confirmation prompt when poisoning a weapon, and replace the warning popups with a corner message instead.
+
+bNoAmmoFromTakingNPCWeapon
+Don't earn extra ammo when taking an NPCs weapon. In the base game, you can earn a random amount of ammo (based on clip size) when taking the equipped weapon of an NPC who died (before reloading the game).
+e.g. taking a .357 revolver will give anywhere between 0-6 ammo.
+
+bNoExitConfirm
+Skip the exit confirmation when clicking Quit Game in the main menu.
+
+bLivingAnatomyShowDR
+Show damage resistance when using the living anatomy perk, and remove decimal places. Additionally hides the DR/DT if they are zero.
+
+bPreviewPerksOnLevelUp
+Always show the perk screen when leveling up even if you have no points to assign.
+
+bPlaceMarkersAtLocations
+Makes right clicking in the map menu to place a marker place it directly on the hovered location.
+
+bAllowPickpocketIfAlreadyCaught
+Allow pickpocketing even if the NPC has caught you previously.
+
+bHideCrosshairInKillcams
+Hide the crosshair during killcams.
+
+bHideHealthbarInKillcams
+Hide the healthbar during killcams.
+
+bHUDRotatesWithVanityCam
+Move the compass when rotating while holding the POV button for the vanity camera.
+
+bHUDWeaponNameLabel
+Show the current weapon name above AP when it's equipped.
+Customizable by editing 'menus/prefabs/lStewieAl/WeaponNameLabel.xml'
+
+bCompressDuplicateConsoleMessages
+Append -#count to consecutive duplicate single line console messages.
+
+bNoPipboyIdleAnims
+Prevent the PipBoy idle anims (used for swaying left/right in vanilla) from playing. In vanilla these are: 
+Characters\male\IdleAnims\1stPPipBoyWaver.kf etc.
+
+bSaveCharacterSelector
+Add a character selector for filtering the save/load menu, to make it easy to find saves from different created with different character names.
+Uses: menus\prefabs\lStewieAl\SaveCharacterSelector.xml
+Options (Character Selector):
+  sAllText - text to display in the Save/Load menu while character filter isn't applied
+
+bNoFastTravelIfLegsCrippled
+Prevent fast travel if a leg is crippled.
+
+bHotkeyHolstersWeaponIfEquipped
+Pressing the hotkey for the current equipped weapon will holster or draw instead of unequipping.
+Options (Current Weapon Hotkey):
+  bDontHolsterWeapon - pressing the weapon key for an already equipped weapon will do nothing (instead of unequipping)
+
+bPreventRepairIfNotAtWorkbench
+Prevent repairing items if you aren't looking at a workbench.
+
+bImprovedRaceMenu
+Allow panning the camera with right click or Y on controller, and increase min zoom.
+Options (Improved Race Menu):
+  bNoAnims - prevent the player swaying while in the menu
+  fPanXScale - scale the right click pan X direction movement speed
+	fPanYScale - scale the right click pan Y direction movement speed
+
+bMapMarkersShowFactionName
+Show the faction name underneath the map marker name, e.g. (Goodsprings - Neutral)
+
+bRightClickChangesToPreviousContainerCategory
+Make right clicking the category cycle to the previous category in container/barter/recipe menus.
+
+bInvalidBSFadeNodePrints
+Disables the '[Tweaks] Invalid BSFadeNode Detected - Linked Obj ID: %08X' warning.
+If you're an author I recommend you leave it on so you know which of your meshes are broken. Setting is hidden (add bInvalidBSFadeNodePrints=0 under [Tweaks] to disable)
+
+bHideReputationTabIfEmpty
+Hides the Stats menu reputation tab and button if you don't have any faction reputations (mainly for use with TTW).
+
+bShowActiveQuestNotesShowsAllStartedQuests
+Make the 'Show Active Quest Notes' button show notes for all started, non-completed quests.
+
+bHideHotkeyedItemsInBarter
+Hides hotkeyed items in the barter menu.
+
+bHideHotkeyedItemsInContainers
+Hides hotkeyed items in the container menu.
+
+----------------
+[Hotkeys]
+To use any hotkeys, replace the ' = 0 ' with the scancode of the desired key, according to http://fose.silverlock.org/fose_command_doc.html#DirectX_Scancodes. If the link dies, just search for 'DirectX Scancodes'.
+For example, 'iOpenMapKey = 50' sets the open map key to be M.
+
+iScreenshotKey - default: Print Scrn
+iPipboyStatsKey - default: F1
+iPipboyItemsKey - default: F2
+iPipboyDataKey - default: F3
+iVATSAcceptKey - default: E
+iConsoleKey - default: ~
+iExitToMainMenuKey - exits to main menu
+iExitGameKey - quits the game
+iDisableCollisionKey - disables player collision while held
+iTogglePipboyLightKey - toggles the PipBoy light, and the night vision scope effect if bAddNightVisionToggle is enabled
+iHolsterWeaponKey - holster the current weapon, disables holding reload to holster weapon
+iOpenQuestsKey - GameMode key to open the PipBoy quests tab, J key switches to the tab while in the PipBoy Menu
+iOpenRadioKey - GameMode key to open the PipBoy radios tab, P key switches to the tab while in the PipBoy menu
+iRadioVolumeDownKey - GameMode key to decrease the radio volume
+iRadioVolumeUpKey - GameMode key to increase the radio volume
+iToggleMenusKey - toggles the visibility of all menus (as the ToggleMenus command)
+iToggleTrueIronSightsKey - toggles true ironsights mode
+iToggleCrosshairKey - toggles visibility of the crosshair
+iOpenLocalMapKey - GameMode key to open the PipBoy local map, N key switches to the map while in the PipBoy Menu
+iToggleSightingNodeHotkey - switch to using ##SightingNode2 if the weapon has one, toggle resets when changing weapons - the weapon FOV is multiplied by the node's scale
+iToggleSneakIndicatorKey - toggles whether the sneak indicator is hidden
+iDropEquippedWeaponKey - drops the equipped weapon
+iToggleSmoothCameraKey - toggles a cinematic camera, smoothing mouse/controller movements
+iNextRadioStationKey - select the next radio station
+iPrevRadioStationKey - select the previous radio station
+iSkipRadioSongKey - skip the current radio song or topic
+
+iOpenMapKey - GameMode key to open the PipBoy world map, M key switches to the map while in the PipBoy Menu
+Options (Map Hotkey):
+  bShowLocalMapInInteriors - open the local map when in interiors
+  
+iRepeatActivateKey - continually presses the use key while held
+Options (Repeated Activate Key): 
+  bOnlyTakeItems - only take items while the key is held
+
+iHideHUDKey - hides various elements on the main HUD
+Options (Hide HUD Key): 
+  bHideCompass - hide the compass/HP bar
+  bHideAmmo - hide the ammo/AP bar
+  bHideHardcoreNeeds - hide H2O, FOD and SLP indicators
+  bHideSneak - hide the sneak indicator
+
+iEquipLastWeaponKey - equips the last equipped weapon
+Options (Equip Last Weapon Hotkey):
+  bIgnoreThrowables - don't set the last equipped weapon to be a thrown weapon
+  
+----------------
+[GameSettings]
+GameSetting values can be written which are applied after esps have loaded.
+Additionally, settings from ini files in the Data/NVSE/Plugins/Tweaks/Settings/ folder.
+For example:
+iLevelsPerPerk = 1
+fPlayerDeathReloadTime = 3
+fWorldMapMinZoom = 0.25
+fLocalMapMinZoom = 0.25

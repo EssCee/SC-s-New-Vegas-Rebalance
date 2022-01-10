@@ -1,0 +1,327 @@
+<!-- message_menu.xml -->
+<!-- 
+// ZENIMAX MEDIA PROPRIETARY INFORMATION
+//
+// This software is developed and/or supplied under the terms of a license
+// or non-disclosure agreement with ZeniMax Media Inc. and may not be copied
+// or disclosed except in accordance with the terms of that agreement.
+//
+//   Copyright (c) 1999 ZeniMax Media Incorporated.
+//   All Rights Reserved.
+//
+// ZeniMax Media Incorporated, Rockville, Maryland 20850
+// http://www.zenimax.com
+//
+// FILE			message_menu.xml
+// VERSION		2.0
+// AUTHOR:		Ricardo Gonzalez
+// DATE			04/15/2003
+// INFO			The structure for the Message menu.  Version 2.0 changed structure to match Fallout look-and-feel.
+-->
+
+<menu name="MessageMenu">
+	<class> &MessageMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+
+	<_MinMenuWidth> 700 </_MinMenuWidth>	<!-- Minimum width of the menu -->
+	<_MaxMenuWidth> 700 </_MaxMenuWidth>	<!-- Maximum width of the menu -->
+	<_horbuf> 40 </_horbuf>							<!-- Extra horizontal spacing to put between text and border -->
+	<_verbuf> 20 </_verbuf>							<!-- Extra vertical spacing to put between text and border -->
+	
+	<rect name="NOGLOW_BRANCH">
+		<id> &noglow_branch; </id>
+		<systemcolor> &hudmain; </systemcolor>
+
+		<!-- ===== BACKGROUND TEXTURE ===== -->
+		<image name="MM_Background">
+		<filename> Interface\Revelation\REVELATION_MESSAGE_bottom_bracket.dds </filename>
+			
+			<!-- Texture position / size scales with the menu -->
+			<x>
+				<copy src="sibling(MM_MainRect)" trait="x"/>
+			</x>
+			<y>
+				<copy src="sibling(MM_MainRect)" trait="y"/>
+			</y>
+			<width> 0 </width>
+			<height> 0 </height>
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<zoom> &scale; </zoom>
+			<brightness> 128 </brightness>
+		</image>
+		
+		<image name="REVELATION_MESSAGE_background">
+		<filename> Interface\Revelation\REVELATION_MESSAGE_background.dds </filename>
+			
+			<!-- Texture position / size scales with the menu -->
+			<x>
+				<copy src="sibling(MM_MainRect)" trait="x"/>
+			</x>
+			<y>
+				<copy src="sibling(MM_MainRect)" trait="y"/>
+				<sub> 20 </sub>
+			</y>
+			<width>
+				<copy src="sibling(MM_MainRect)" trait="width"/>
+			</width>
+			<height>
+				<copy src="sibling(MM_MainRect)" trait="height"/>
+				<add> 20 </add>
+			</height>
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<zoom> &scale; </zoom>
+			<brightness> 128 </brightness>
+		</image>
+		
+		<!-- Positioning rect -->
+		<rect name="MM_MainRect">
+			<id> 0 </id>
+			<depth> 3 </depth>
+			<locus> &true; </locus>
+
+			<!-- Centered on screen -->
+			<x>
+				<copy src="screen()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="screen()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+			</y>
+			
+			<width></width>		<!-- Set in code -->
+			<height> <copy src="child(MM_BottomBracket)" trait="y"/> </height>
+			
+			<!-- ===== HEADER ===== -->
+			
+			<text name="MM_Title">
+				<id> 1 </id>
+				<font> 6 </font>
+				<string></string>		<!-- Set in code -->
+				
+				<!-- Adjust position based on justification -->
+				<x>
+					<copy> 0 </copy>
+					<add>
+						<copy> 60 </copy>
+						<onlyif>
+							<copy src="me()" trait="justify"/>
+							<eq> &left; </eq>
+						</onlyif>
+					</add>
+					<add>
+						<copy src="parent()" trait="width"/>
+						<div> 2 </div>
+						<onlyif>
+							<copy src="me()" trait="justify"/>
+							<eq> &center; </eq>
+						</onlyif>
+					</add>
+				</x>
+				<y> -10 </y>
+				<justify> &left; </justify>		<!-- Set in code -->
+			</text>
+			
+			<image name="MM_headline_h2">
+				<include src="REVELATION_MESSAGE_top_bracket.xml"/>
+				<_length>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="x"/>
+				</_length>
+				
+				<!-- Place at the right side of the title; or cover the whole menu if the title is absent -->
+				<y>
+				<copy src="MM_Title" trait="y"/>
+				<sub> 10 </sub>
+				<sub> 55.64 </sub>
+				</y>
+			</image>
+
+			<!-- ===== MESSAGE ICON ===== -->
+			<image name="MM_MessageIcon">
+				<id> 2 </id>
+				<x> <copy src="io()" trait="_horbuf"/> </x>
+				<y> <copy src="sibling(MM_MessageText)" trait="y"/> </y>
+				<width> 100 </width>
+				<height> 100 </height>
+				<zoom> &scale; </zoom>
+				<visible> &false; </visible>
+			</image>
+
+			<!-- The message box text -->
+			<text name="MM_MessageText">
+				<id> 3 </id>
+				<font> 2 </font>
+
+				<wrapwidth>
+					<copy src="io()" trait="_MaxMenuWidth"/>
+					<sub>
+						<copy src="io()" trait="_horbuf"/>
+						<mul> 2 </mul>
+					</sub>
+					
+					 <!--Make room for icon if present--> 
+					<sub>
+						<copy> 120 </copy>
+						<onlyif src="sibling(MM_MessageIcon)" trait="visible"/>
+					</sub>
+				</wrapwidth>
+				
+				<!-- Adjust position based on justification -->
+				<x>
+					<copy> 0 </copy>
+					<add>
+						<copy src="io()" trait="_horbuf"/>
+						
+						<!-- Make room for icon if present -->
+						<add>
+							<copy> 120 </copy>
+							<onlyif src="sibling(MM_MessageIcon)" trait="visible"/>
+						</add>
+						<onlyif>
+							<copy src="me()" trait="justify"/>
+							<eq> &left; </eq>
+						</onlyif>
+					</add>
+					<add>
+						<copy src="parent()" trait="width"/>
+						<!-- Make room for icon if present -->
+						<add>
+							<copy> 120 </copy>
+							<onlyif src="sibling(MM_MessageIcon)" trait="visible"/>
+						</add>
+						<div> 2 </div>
+						<onlyif>
+							<copy src="me()" trait="justify"/>
+							<eq> &center; </eq>
+						</onlyif>
+					</add>
+				</x>
+				<y>
+					<copy src="sibling(MM_Title)" trait="y"/>
+					<add src="sibling(MM_Title)" trait="height"/>
+					<add src="io()" trait="_verbuf"/>
+					<sub> 5 </sub>
+				</y>
+				<justify> &left; </justify>		<!-- Set in code -->
+			</text>
+			
+			<!--<image name="test">
+				<filename> Interface\Shared\solid.dds </filename>
+				<zoom> &scale; </zoom>
+				<x>
+					<copy src="sibling(MM_MessageText)" trait="x"/>
+					<sub>
+						<copy src="sibling(MM_MessageText)" trait="width"/>
+						<div> 2 </div>
+						<onlyif>
+							<copy src="sibling(MM_MessageText)" trait="justify"/>
+							<eq> &center; </eq>
+						</onlyif>
+					</sub>
+				</x>
+				<y> <copy src="sibling(MM_MessageText)" trait="y"/> </y>
+				<width> <copy src="sibling(MM_MessageText)" trait="wrapwidth"/> </width>
+				<height> <copy src="sibling(MM_MessageText)" trait="height"/> </height>
+				<alpha> 128 </alpha>
+			</image>-->
+
+			<!-- The list box containing the message box's buttons -->
+			<hotrect name="MM_ButtonList">
+				<include src="REVELATION_list_box.xml"/>
+				<id> 4 </id>
+
+				<x>
+					<copy src="parent()" trait="width"/>
+					<sub src="me()" trait="width"/>
+					<div> 2 </div>
+					<add> 0 </add>
+				</x>
+				<y>
+					<copy src="MM_BottomBracket" trait="y"/>
+					<add> 10 </add>
+				</y>
+				
+				<!-- Set by code -->
+				<height>	
+					<min> 420 </min>
+				</height>
+				<width>
+					<min>
+						<copy src="io()" trait="_MaxMenuWidth"/>
+						<sub>
+							<copy src="io()" trait="_horbuf"/>
+							<mul> 2 </mul>
+						</sub>
+					</min>
+				</width>
+				
+				<!-- 31812: This doesn't need to be a clip window since we never scroll this list, and clipping acts
+				oddly when rendering on top of the Pipboy, so just turn clipping off -->
+				<!-- RG, 6-5-2008: Wrong; list scrolls if we have too many buttons, like in the Workbench message -->
+				<!--<clipwindow> &false; </clipwindow>-->
+			</hotrect>
+			
+			<!-- Bottom-most bracket -->
+			<rect name="MM_BottomBracket">
+				<include src="REVELATION_MESSAGE_bottom_bracket.xml"/>
+				
+				<width> <copy src="parent()" trait="width"/> </width>
+				<y>
+					<copy src="sibling(MM_MessageText)" trait="y"/>
+					<sub> 10 </sub>
+					<add>
+						<copy src="sibling(MM_MessageText)" trait="height"/>
+						<max>
+							<copy> 100 </copy>
+							<onlyif src="sibling(MM_MessageIcon)" trait="visible"/>
+						</max>
+						<add> 30 </add>
+						<onlyif src="sibling(MM_MessageText)" trait="string"/>
+					</add>
+				</y>
+			</rect>
+		</rect>		<!-- end MM_MainRect-->
+	</rect>		<!-- end NOGLOW_BRANCH-->
+	
+	<!-- The button template -->
+		<template name="MM_ButtonTemplate">
+			<hotrect name="MM_Button">
+				<include src="REVELATION_list_box_template.xml"/>
+				
+				<image name="REVELATION_Button1">
+					<width> 212</width>
+					<height> 40</height>
+					<x> </x>
+					<y> </y>
+					<depth> -2 </depth>
+					<filename> Interface\Revelation\REVELATION_Button1_up.dds </filename>
+					<systemcolor> &nosystemcolor; </systemcolor>
+					<brightness> 128 </brightness>
+				</image>
+				
+				<text name="ListItemText">
+					<font> 3 </font>
+					<string> <copy src="parent()" trait="string"/> </string>
+					<justify> &center; </justify>
+					<wrapwidth>
+						<copy src="io()" trait="_MaxMenuWidth"/>
+						<sub>
+							<copy src="io()" trait="_horbuf"/>
+							<mul> 2 </mul>
+						</sub>
+						<sub> 60 </sub>
+					</wrapwidth>
+				
+					<x>
+						<copy src="parent()" trait="width"/>
+						<div> 2 </div>
+						<sub> 10 </sub>
+					</x>
+					<y> 10 </y>
+				</text>
+			</hotrect>
+		</template>
+</menu>

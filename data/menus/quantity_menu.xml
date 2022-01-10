@@ -1,0 +1,258 @@
+<!-- quantity_menu.xml -->
+<!-- 
+// ZENIMAX MEDIA PROPRIETARY INFORMATION
+//
+// This software is developed and/or supplied under the terms of a license
+// or non-disclosure agreement with ZeniMax Media Inc. and may not be copied
+// or disclosed except in accordance with the terms of that agreement.
+//
+//   Copyright (c) 1999 ZeniMax Media Incorporated.
+//   All Rights Reserved.
+//
+// ZeniMax Media Incorporated, Rockville, Maryland 20850
+// http://www.zenimax.com
+//
+// FILE			quantity_menu.xml
+// VERSION		1.0
+// AUTHOR:		Ricardo Gonzalez
+// DATE			January 30, 2007
+// INFO			Menu shown when selecting a number of items from a group
+-->
+<menu name="QuantityMenu">
+    <class> &QuantityMenu; </class>
+   <stackingtype> &no_click_past; </stackingtype> 
+    
+	<!-- XBox 360 control bindings -->
+	<xbuttona>	<ref src="QM_OKButton" trait="clicked"/></xbuttona>
+	<xleft>	<ref src="QM_DecreaseArrow" trait="clicked"/></xleft>
+	<xright>	<ref src="QM_IncreaseArrow" trait="clicked"/></xright>
+	
+	<_PCButton_A> QM_OKButton </_PCButton_A>
+	<_PCButton_E> QM_CancelButton </_PCButton_E>
+
+	<rect name="NOGLOW_BRANCH">
+		<id> &noglow_branch; </id>
+		<systemcolor> <!-- &hudmain; --> </systemcolor>
+
+		<!-- Menu background -->
+		<image name="QM_Background">
+			<x>
+				<copy src="screen()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="screen()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+			</y>
+			<width> 0 </width>
+			<height> 0 </height>
+			<filename> Interface\Shared\background\solid_black.dds </filename>
+			<zoom> &scale; </zoom>
+			<brightness> 128 </brightness>
+			<!-- <alpha> <copy src="globals()" trait="_background_fill_alpha"/> </alpha> -->		<!-- Set in code -->
+			<depth> 1 </depth>
+		</image>
+		
+		<hotrect name="QM_Background_FIX">
+			<x>
+				<copy src="screen()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="screen()" trait="height"/>
+				<sub src="me()" trait="height"/>
+				<div> 2 </div>
+			</y>
+			<width> 740 </width>
+			<height> 332 </height>
+			<zoom> &scale; </zoom>
+			<brightness> 128 </brightness>
+			<!-- <alpha> <copy src="globals()" trait="_background_fill_alpha"/> </alpha> -->		<!-- Set in code -->
+			<depth> 1 </depth>
+		</image>
+		
+		<image name="quantity_menu2">
+			<x>
+				<copy src="QM_Background_FIX" trait="x"/>
+				<sub> 35 </sub>
+			</x>
+			<y>
+				<copy src="QM_Background_FIX" trait="y"/>
+				<add> 56 </add>
+			</y>
+			<width> 740 </width>
+			<height> 332 </height>
+			<zoom> &scale; </zoom>
+			<filename> Interface\Revelation\quantity_menu.dds </filename>
+
+			<brightness> 128 </brightness>
+			<depth> 1 </depth>
+		</image>
+				
+		<hotrect name="QM_MainRect">
+			<locus> &true; </locus>
+			<id> &generic; </id>
+			<target> &true; </target>
+			<wheelable> &true; </wheelable>
+			<depth> 2 </depth>
+
+			<x>
+				<copy src="QM_Background_FIX" trait="x"/>
+				<add> 10 </add>
+			</x>
+			<y>
+				<copy src="QM_Background_FIX" trait="y"/>
+				<add> 42 </add>
+			</y>
+
+			<!-- Top-most bracket -->
+			<rect name="QM_TopBracket">
+				<!-- <include src="top_bracket.xml"/> -->
+				<width> 690 </width>
+			</rect>
+
+			<!-- Bottom-most bracket -->
+			<rect name="QM_BottomBracket">
+				<!-- <include src="bottom_bracket.xml"/> -->
+
+				<y> 290 </y>
+				<width> 690 </width>
+			</rect>
+
+			<!-- The "How many?" prompt at top of screen -->
+			<text name="QM_HowManyText">
+				<x> 278 </x>
+				<y> 170 </y>
+
+				<font> 3 </font>
+				<systemcolor> &hudmain; </systemcolor>
+				<justify> &center; </justify>
+				<string> &-sHowMany; </string>
+			</text>
+
+			<rect name="QM_AmountMeter">
+				<id> 0 </id>
+				<include src="meter.xml"/>
+				<x> 149.5 </x>
+				<y> 115 </y>
+				<width> 391 </width>
+				<height> 24 </height>
+				<systemcolor> &hudmain; </systemcolor>
+				<_ShowBackground> &true; </_ShowBackground>
+				<draggable> &true; </draggable>
+				<target> &true; </target>
+				<repeathorizontal> &true; </repeathorizontal>
+				<xdefault> 1 </xdefault>
+				<_Value>
+					<copy> 0 </copy>
+					<add>
+						<copy src="me()" trait="user1"/>
+						<onlyif src="me()" trait="dragx"/>
+					</add>
+					<add>
+						<copy src="me()" trait="user2"/>
+						<div src="me()" trait="user0"/>
+						<onlyifnot src="me()" trait="dragx"/>
+					</add>
+				</_Value>
+				
+				<user0> 1 </user0>		<!-- Max amount -->
+				
+				<!-- Drag value: goes from 0 to 1 based on mouse drag -->
+				<user1>
+					<copy src="me()" trait="dragx"/>
+					<sub> 140 </sub>
+					<div> 392.5 </div>
+					<max> 0 </max>
+					<min> 1 </min>
+				</user1>
+				
+				<!-- Code value: Set whenever arrows are clicked, value is set in code, etc.  Overrides drag value -->
+				<user2></user2>
+				
+				<user3></user3>		<!-- Step size: Amount to change with Left / Right -->
+				<user4></user4>		<!-- Jump size: Large amount to change with LB / RB -->
+			</rect>
+			
+			<image name="QM_DecreaseArrow">
+				<id> 1 </id>
+				<filename> Interface\Main\main_arrow_left.dds </filename>
+				<x> 130 </x>
+				<y> 115 </y>
+				<width> 17.5 </width>
+				<height> 35 </height>
+				<systemcolor> &hudmain; </systemcolor>
+				<zoom> &scale; </zoom>
+				<target> &true; </target>
+			</image>
+			
+			<image name="QM_IncreaseArrow">
+				<id> 2 </id>
+				<filename> Interface\Main\main_arrow_right.dds </filename>
+				<x> 549 </x>
+				<y> 115 </y>
+				<width> 17.5 </width>
+				<height> 35 </height>
+				<systemcolor> &hudmain; </systemcolor>
+				<zoom> &scale; </zoom>
+				<target> &true; </target>
+			</image>
+
+			<!-- Scrollbar value text -->
+			<text name="QM_AmountChosen">
+				<id> 3 </id>
+				<x> 281 </x>
+				<y> 204 </y>
+
+				<font> 6 </font>
+				<systemcolor> &hudmain; </systemcolor>
+				<justify> &center; </justify>
+				<string>
+					<copy src="sibling(QM_AmountMeter)" trait="_Value"/>
+					<mul src="sibling(QM_AmountMeter)" trait="user0"/>
+					<round> 1 </round>
+				</string>
+			</text>
+
+			<!-- The Wait / Sleep button: Begins the Wait / Sleep process-->
+			<hotrect name="QM_OKButton">
+				<include src="REVELATION_text_box_short.xml"/>
+				<id> 4 </id>
+				<x> 386 </x>
+				<y> 165 </y>
+				
+				<_x> 0 </_x>
+				<_y> 0 </_y>
+
+				<justify> &left; </justify>
+				<string> &-sOK; </string>
+				<_verbuf> 15 </_verbuf>
+				<_xbox_button> &xbuttona; </_xbox_button>
+				<_PCButtonText> &-sPCMenuHintA; </_PCButtonText> 
+			</hotrect>
+
+			<!-- The Cancel button: Exits the menu-->
+			<hotrect name="QM_CancelButton">
+				<include src="REVELATION_text_box_short.xml"/>
+				<id> 5 </id>
+				<x> 386 </x>
+				<y> 202 </y>
+				
+				<_x> 0 </_x>
+				<_y> 0 </_y>
+				<_verbuf> 15 </_verbuf>
+				<justify> &left; </justify>
+				<string> &-sCancel; </string>
+				<_xbox_button> &xbuttonb; </_xbox_button>
+				<_PCButtonText> &-sPCMenuHintE; </_PCButtonText>
+			</hotrect>
+		</hotrect>	<!-- end QM_MainRect -->
+	</rect>
+
+	<rect name="GLOW_BRANCH">
+		<id> &glow_branch; </id>
+	</rect>			<!-- end GLOW_BRANCH-->
+</menu>

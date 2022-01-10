@@ -1,0 +1,215 @@
+<!-- dialog_menu.xml -->
+<!-- 
+// CLOSE TO FALLOUT: Return of the Talking Heads 1.0
+// by MaFFej
+//
+// needs: Data\Textures\Interface\CTF-RotTH.dds
+-->
+<menu name="DialogMenu">
+	<class> &DialogMenu; </class>
+	<stackingtype> &no_click_past; </stackingtype>
+
+	<!-- User traits -->
+	<_DialogVisible> &false; </_DialogVisible>		<!-- Controls overall dialog visibility -->
+	<_ShowingText> &true; </_ShowingText>	<!-- True if speaker text is being shown, false if topic list is shown -->
+	<_ShowSubtitles> &true; </_ShowSubtitles>	<!-- True if the game setting for Dialogue Subtitles is ON -->
+	<_MinListHeight> 290 </_MinListHeight>		<!-- 110 --><!-- The minimum height of the topic list -->
+	
+	<!-- The height of the scrollbar == the space between the two brackets -->
+	<_ScrollbarHeight>
+		<copy src="DM_BottomBracket" trait="y"/>
+		<sub src="DM_BottomBracket" trait="height"/>
+		<sub src="DM_TopBracket" trait="height"/>
+		<sub src="DM_TopBracket" trait="y"/>
+	</_ScrollbarHeight>
+	
+	<rect name="NOGLOW_BRANCH">
+		<id> &noglow_branch; </id>
+		<systemcolor> <!-- &hudmain; --><!--All menus now pipboy color--> </systemcolor>
+
+<!-- NPC NAME ============================================================== -->
+		<text name="DM_SpeakerNameLabel">
+			<id> 1 </id>
+
+			<depth> 3 </depth>
+			<font> 3 </font>
+			<justify> &center; </justify>
+			<systemcolor> &hudmain; </systemcolor>
+
+			<x>
+				<copy src="screen()" trait="width"/>
+				<sub src="screen()" trait="cropx"/>
+				<sub src="screen()" trait="cropx"/>
+				<div> 2 </div>
+			</x>
+			<y>
+				<copy src="screen()" trait="cropy"/>
+				<add src="screen()" trait="cropy"/>
+				<sub> 18 </sub>
+			</y>
+			<visible>
+				<copy src="io()" trait="_DialogVisible"/>
+			</visible>
+		</text>
+
+<!-- ===== TEXT BACKGROUND TEXTURE ===== -->
+		<image name="DM_TextBackground">
+			<depth> -50 </depth>
+			<filename> Interface\CTF-RotTH.dds </filename>
+
+			<width> <copy src="screen()" trait="width"/> </width>
+			<height> <copy src="screen()" trait="height"/> </height>
+
+			<x>
+				<copy src="screen()" trait="width"/>
+				<sub src="me()" trait="width"/>
+				<div> 2 </div>
+			</x>
+			<y> 0 </y>
+
+			<zoom> &scale; </zoom>
+			<brightness> 128 </brightness>
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<alpha> <!-- <copy src="globals()" trait="_background_fill_alpha"/> --> </alpha>
+		</image>
+
+
+<!-- ===== CLICK RECT: Covers whole screen; if clicked on while text is showing, menu will skip to next dialogue screen===== -->
+		<hotrect name="DM_ClickRect">
+		
+			<id> 0 </id>
+			<depth> 5 </depth>
+			<target> <copy src="io()" trait="_ShowingText"/> </target>
+			<height> <copy src="screen()" trait="height"/> </height>
+			<width> <copy src="screen()" trait="width"/> </width>
+			<alpha> 0 </alpha>
+		</hotrect>
+
+		<!-- ===== CENTERING LINE FOR TEXT / TOPIC LIST ===== -->
+		<rect name="DM_CenterHeight">
+			<y> 580 </y>
+		</rect>
+
+		<!-- ===== SPEAKER TEXT ===== -->
+		<text name="DM_SpeakerText">
+			<id> 2 </id>
+
+			<depth> 3 </depth>
+			<font> 3 </font>
+
+			<systemcolor> &hudmain; </systemcolor>
+			<wrapwidth>
+				<copy src="DM_TextBackground" trait="width"/>
+				<sub> 170 </sub>
+			</wrapwidth>
+
+			<x>
+				<copy src="DM_TextBackground" trait="x"/>
+				<add> 80 </add>
+			</x>
+			
+			<!-- Center on the centering line, but stay within the safe zone -->
+			<y> 545 </y>
+
+			<visible>
+				<copy src="io()" trait="_DialogVisible"/>
+			</visible>
+			<target> &true; </target>
+		</text>
+
+		<!-- ===== TOPICS LIST ===== -->
+		<hotrect name="DM_TopicList">
+			<include src="list_box.xml"/>
+			<id> 3 </id>
+
+			<width>
+				<copy src="DM_TextBackground" trait="width"/>
+				<sub> 120 </sub>
+			</width>
+			<height> 
+				<max> <copy src="io()" trait="_MinListHeight"/> </max> 
+				<sub> 75 </sub>
+			</height>
+
+			<x>
+				<copy src="DM_TextBackground" trait="x"/>
+				<add> 70 </add>
+			</x>
+			
+			<!-- Center on the centering line, but stay within the safe zone -->
+			<y> 710 </y>
+			
+			<depth> 3 </depth>
+			<visible>
+				<not src="io()" trait="_ShowingText"/>
+				<and src="io()" trait="_DialogVisible"/>
+			</visible>
+			
+			<_enabled> <copy src="me()" trait="visible"/> </_enabled>
+		</hotrect>
+
+		<!-- Enclosing brackets -->
+		<rect name="DM_TopBracket">
+			<!-- <include src="top_bracket.xml"/> -->
+			
+			<depth> 3 </depth>
+			
+			<x>
+				<copy src="sibling(DM_TopicList)" trait="x"/>
+				<add> 15 </add>
+			</x>
+			<y>
+				<copy src="sibling(DM_TopicList)" trait="y"/>
+				<sub> 20 </sub>
+			</y>
+			<height> 40 </height>
+			<width> <copy src="sibling(DM_TopicList)" trait="width"/> </width>
+			<visible> <copy src="sibling(DM_TopicList)" trait="visible"/> </visible>
+		</rect>
+
+		<rect name="DM_BottomBracket">
+			<!-- <include src="bottom_bracket.xml"/> -->
+
+			<depth> 3 </depth>
+			
+			<x> <copy src="sibling(DM_TopBracket)" trait="x"/> </x>
+			<y>
+				<copy src="sibling(DM_TopicList)" trait="y"/>
+				<add src="sibling(DM_TopicList)" trait="height"/>
+				<add> 10 </add>
+			</y>
+			<height> <copy src="sibling(DM_TopBracket)" trait="height"/> </height>
+			<width> <copy src="sibling(DM_TopBracket)" trait="width"/> </width>
+			<visible> <copy src="sibling(DM_TopicList)" trait="visible"/> </visible>
+		</rect>
+	</rect>
+
+	<!-- ===== END GLOW_BRANCH ===== -->
+
+	<!-- ===== TOPICS LIST TEMPLATE ===== -->
+	<template name="DM_TopicTemplate">
+		<hotrect name="DM_Topic">
+			<include src="list_box_template.xml"/>
+
+			<!-- USER TRAITS -->
+			<_line_alpha></_line_alpha>	<!-- The text's alpha -->
+			
+			<clicksound> &nosound; </clicksound>			
+			
+			<text name="ListItemText">
+				<font> 3 </font>
+				<systemcolor> &hudmain; </systemcolor>
+				<string> <copy src="parent()" trait="string"/> </string>
+				<wrapwidth>
+					<copy src="parent()" trait="width"/>
+					<sub> 120 <!-- 40 --> </sub>
+				</wrapwidth>
+				<alpha> <copy src="parent()" trait="_line_alpha"/> </alpha>
+				
+				<x> 25 </x>
+				<y> 15 </y>
+			</text>
+		</hotrect>
+	</template>
+</menu>
+<!-- ===== END DIALOG_MENU===== -->
