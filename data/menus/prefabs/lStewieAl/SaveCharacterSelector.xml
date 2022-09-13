@@ -3,7 +3,7 @@
         <id> &generic; </id>
         <filename> Interface\Main\main_arrow_left.dds </filename>
         <x><copy src="sibling(Save_CharacterName)" trait="x"/><sub> 20 </sub></x>
-        <y> 402.5 </y>
+        <y> -27.5 </y>
         <width> 17.5 </width>
         <height> 35 </height>
         <zoom> &scale; </zoom>
@@ -18,8 +18,8 @@
         <id> &generic; </id>
         <font> 6 </font>
         <string> All </string>
-        <x> <copy src="screen()" trait="width"/> <div> 2 </div> <sub src="grandparent()" trait="x"/> <sub><copy src="me()" trait="width"/>  <div> 2 </div> </sub></x>
-        <y> 400 </y>
+        <x> 57.5 </x>
+        <y> -27.5 </y>
         <target> &true; </target>
         <wheelable> &true; </wheelable>
         <mouseoversound>UIMenuFocus</mouseoversound>
@@ -33,7 +33,7 @@
         <id> &generic; </id>
         <filename> Interface\Main\main_arrow_right.dds </filename>
         <x><copy src="sibling(Save_CharacterName)" trait="x"/><add src="sibling(Save_CharacterName)" trait="width"/><add> 12 </add></x>
-        <y> 402.5 </y>
+        <y> -27.5 </y>
         <width> 17.5 </width>
         <height> 35 </height>
         <zoom> &scale; </zoom>

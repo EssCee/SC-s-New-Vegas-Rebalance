@@ -1,4 +1,4 @@
-Stewie Tweaks v7.80 ReadMe
+Stewie Tweaks v8.26 ReadMe
 
 Each of the plugin's features can be enabled using the in-game Pause->Settings->Tweaks menu (requires rebooting the game to apply changes), or should be enabled in the provided INI as desired. 
 If the settings don't exist, run the game with the plugin active and they will be generated.
@@ -25,7 +25,7 @@ Allow INIs in the Data\\NVSE\\Plugins\\Tweaks\\INIs folder to overwrite the main
 To enable any Tweaks, set them to ' = 1' instead of ' = 0'.
 
 bInlineVanillaFunctions
-Optimises the most frequent/expensive functions for various scenarios to decrease save/loading times and improve general performance. If you're using 'New Vegas Tick Fix' make sure it's updated (v9.6+).
+Optimizes the most frequent/expensive functions for various scenarios to decrease save/loading times and improve general performance. If you're using 'New Vegas Tick Fix' make sure it's updated (v9.6+).
 
 bNoScreenshotPopup
 Stops the "Screenshot: File ... created" pop-up appearing at the top right corner of the screen.
@@ -212,9 +212,6 @@ Options (Manual Reload):
   bAutoWeaponsPlayEmptyClipSound - play the empty clip sound when the clip is emptied for automatic weapons
   bAutoWeaponsOnly - keep automatically reloading semi-fire weapons
   bReloadWhenFiringWithEmptyClip - reload when trying to fire with an empty clip
-
-bNoStartMenuDLCPopup
-Removes the "Loading extra content..." pop-up at the start menu.
 
 bUseWASDAsArrowKeys
 Allows use of WASD keys in menus, and space to accept - will not function if the keys conflict with menu key-binds.
@@ -457,6 +454,7 @@ bReduceXP
 Scale all earned XP.
 Options (Reduced XP):
   fXPMultiplier - multiplier applied to earned XP, the result is rounded up
+  bPreventRounding - don't ceil the earned XP, storing the fractional component in the cosave
 
 bVatsExitKey
 Adds hotkeys Tab and Right Click to instantly end the VATS killcam.
@@ -484,6 +482,8 @@ Options (Quest Added):
 
 bPickLocksEvenWithKey
 Holding shift allows picking a lock/terminal even if you have the key.
+Options (Pick Locks With Key):
+  bInvert - make holding shift allow using the key to the lock/terminal
 
 bRememberConsoleHistory
 Stores/restores console history from ConsoleHistory.txt.
@@ -1539,6 +1539,7 @@ Options (Weapon Modding):
   bItemModMenuShowUnownedMods - show unowned weapon mods in the menu
   sRemoveItemModSound - editor ID of the sound to play when removing weapon mods (note: VUI+ has its own sounds that it plays when you click on weapon mods)
   bRequireWorkbench - only allow weapon modding if at a workbench
+  bDebug - allow applying weapon mods even if you don't have them
 
 bDifficultyDoesntAffectNPCToNPCDamage
 Stops NPC-NPC damage using the fDiffMultHPByPC gamesetting, with multipliers for NPC/teammate damages. Companion<->companion damage uses fDamageToTeammateMult.
@@ -1564,9 +1565,6 @@ Make clicking while a note is being displayed on a computer first show the rest 
 
 bInvertPipboyRepairMenuSorting
 Place high condition items at the bottom of the repair list.
-
-bSortRepairServicesMenu
-Sort worn items to the top of the repair services menu, then alphabetically and by condition.
 
 bDisableRegionBordersKeepMessage
 Allow movement outside world borders, showing the 'Leaving Region' warning repeatedly. Functionally equivalent to adding bBorderRegionsEnabled = 0 under [General] in FalloutCustom.ini, but retains the ui warning.
@@ -1615,7 +1613,7 @@ bNoTurningAnim
 Suppress player turning animations to prevent the glide when stopping while turning.
 
 bCustomAddToInventoryMessageTimer
-Customise the length of time the 'Added to inventory' message is shown.
+Customize the length of time the 'Added to inventory' message is shown.
 Options (Message Times):
   fAddItem - time the 'added to inventory' message is shown (in seconds)
   
@@ -1745,7 +1743,7 @@ bVATSHipFire
 Entering VATS while not aiming will shoot from the hip for all shots fired (does not affect accuracy).
 
 bAlternateLevelupSounds
-Play an alternate levelup sound every A or B levels. If A is a multiple of B, the larger number wins ties. 
+Play an alternate level-up sound every A or B levels. If A is a multiple of B, the larger number wins ties. 
 Options (Alt Levelup Sound):
   iLevelA - Play sSoundA every iLevelA levels
 	iLevelB - Play sSoundB every iLevelB levels
@@ -1996,6 +1994,12 @@ Automatically continue game at the start menu.
 
 bSortMiscStats
 Sort the misc stats page of the Stats menu.
+Options (Misc Stat Sorting):
+  iSortMode - sorting mode
+    0 - Alphabetical Vanilla + unsorted modded
+    1 - Alphabetical
+    2 - By Value
+    3 - Alphabetical/Zeros Last
 
 bTakeAllInCompanionContainers
 Show the 'Take All' button when viewing companion inventories.
@@ -2025,6 +2029,8 @@ Prevent the unequip sound when the player dies.
 
 bToggleControllerIfAttackPressed
 Allow clicking or pressing A to toggle keyboard/controller.
+Options (Toggle Controller If Attack Pressed):
+  bPreventControllerConnectedPopup - prevent the 'Turn off 360 Controller in the Controls...' popup
 
 bBillyGoatMode
 Allow adjusting the max walking, jumping and autowalk angles. Vanilla is 47 degrees.
@@ -2087,6 +2093,7 @@ bPerBulletLoopingReloads
 Require pressing reload N times to load N rounds for looping reload weapons.
 Options (Looping Reloads):
   iMaxQueueLength - max number of bullets to queue by pressing reload multiple times, set to 0 for no limit
+  iRoundsPerReloadPress - number of bullets to queue per reload press
 
 bNoPlayerStaggerAnims
 Disable player stagger animations when limbs are crippled.
@@ -2152,7 +2159,7 @@ Options (No Stealing After Repair):
 bPreventNPCComments
 Prevent NPCs commenting on various player actions.
 Options (Prevent NPC Topics):
-  iFlags - hexadecimal value containing the sum of all the desired flags. e.g. 0x880 would prevent KnockOverObject and LockedTerminalOrContainerInCrosshair.
+  iFlags - hexadecimal value containing the sum of all the desired flags. e.g. 0x8A0 would prevent KnockOverObject, LockedTerminalOrContainerInCrosshair and ZKeyObject.
 Flags:
  Greeting = 0x1
  SwingMeleeWeapon = 0x2
@@ -2203,7 +2210,7 @@ Use the last weapon that damaged an NPC instead of the currently equipped weapon
 Note: weapons that are scripted to directly use the Kill command will not increase the challenges.
 
 bPreventNoFastTravelMessage
-Prevent the sNoFastTravelUndiscovered mesasge when clicking on an undiscovered map marker.
+Prevent the sNoFastTravelUndiscovered message when clicking on an undiscovered map marker.
 Options (Prevent No Fast Travel Message):
   bPlaySound - play a 'cancel' sound when trying to click on an undiscovered marker
 
@@ -2267,6 +2274,7 @@ Options (Double Jumping):
   sJumpSound - sound played when jumping in mid-air
   fJumpVolume - volume of double jump sound
   fMidairTimer - time (in seconds) after falling where initial jumps don't increase the jump counter
+  bKeepHeight - don't reset the fall damage height when jumping in mid-air
 
 bExplosionRadiusBuff
 Make inner 30% of explosion radius deal full damage and minimum damage at radius be 20%.
@@ -2323,6 +2331,9 @@ Options (Power Armor Scales Limb Damage):
 
 bPreventHittingHolsteredWeapons
 Make projectiles pass through NPC holstered weapons.
+Options (Shoot Through Weapons):
+  bIgnoreUnholstered - ignore hitting unholstered weapons (prevents disarming)
+  bAllowHitsInVATS - allow hitting weapons in VATS
 
 bCrippledLimbsPlayPainSoundWhenFalling
 Play pain sounds when falling with crippled legs.
@@ -2336,7 +2347,7 @@ bNPCsDetectMineExplosions
 Alert nearby NPCs when mines explode.
 
 bTerminalGreyReadNotes,
-Greys notes after reading them in the terminal (not retroactive).
+Grays notes after reading them in the terminal (not retroactive).
 
 bSortEquipableAmmo
 Sorts usable ammo to the top of the PipBoy inventory.
@@ -2346,6 +2357,183 @@ Hide item added messages for caps.
 
 bSplashDamageTorsoGibbing
 Gives projectile splash damage a chance to trigger bloody mess torso explosions.
+
+bFreeWildWasteland
+Allow selecting wild wasteland without using a trait slot.
+
+bInvertCameraX
+Invert the camera X movement.
+
+bClearNearbyPlayerMarker
+Remove player placed marker when nearby.
+Options (Clear Nearby Player Marker):
+  fDistance - distance to remove the marker
+
+bLightStepAffectsCompanions
+Give companions light step if player has the perk.
+
+bVATSAPDisplayIncludesReloadCost
+Include the cost of a reload (fActionPointsReload gamesetting) when queuing a VATS attack that will cause a reload.
+
+bSkipVeryEasyLocksAtMaxSkill
+Automatically unlock very easy locks when lockpick skill is maxed.
+
+bMultithreadedHackingMenu
+Multithreads the setup of the hacking words list to reduce lag when hacking a terminal.
+
+bMarkNotesUnread
+Adds right click to mark a note as unread.
+
+bCustomPopupIcons
+Adds configurable icons to popup messages.
+Options (UI Message Icons):
+  sRadiationIncrease
+  sRadiationDecrease
+  sRadiationSick
+  sRadiationNotSick
+  sDehydrationIncrease
+  sDehydrationDecrease
+  sDehydrationSick
+  sDehydrationNotSick
+  sHungerIncrease
+  sHungerDecrease
+  sHungerSick
+  sHungerNotSick
+  sSleepDeprivationIncrease
+  sSleepDeprivationDecrease
+  sSleepDeprivationSick
+  sSleepDeprivationNotSick
+  sChemsAddicted
+
+bNoGibSoundWhenEnteringCells
+Prevent body part explosion sounds when entering cells.
+
+bInteriorExteriorMapDoorIcon
+Use a separate icon for local map doors which lead to an exterior. Uses 'Interface\Icons\Local Map\iron_exterior_door.dds' and 'Interface\Icons\Local Map\iron_interior_door.dds' for exterior/interior doors respectively.
+
+bChallengeMenuIcons
+Use challenge icons in the pipboy challenges menu (requires a mod that adds icons to the Challenge forms).
+
+bPauseHolotapes
+Make clicking on the current holotape pause it, double tapping pause resets the holotape.
+
+bImprovedWeather
+Prevent weather changes when fast traveling short distances.
+Options (Improved Weather):
+  fFastTravelWeatherChangeDistanceThreshold - minimum fast travel distance for a weather change
+
+bHUDMarkerNameIndicator
+Show the name of the nearest triangle location marker you're looking towards.
+Options (HUD Marker Name):
+  iShowDistance - mode for showing distance to the location
+    0 - off
+	1 - meters
+	2 - feet
+  fMaxAngle - max angle to show location name
+  fAngleOffset - offset of angle (to account for the triangle being off-centered)
+  fDelay - delay (in seconds) before name is shown
+
+bScaleAshpileSize
+Scale the size of ashpiles depending on actor size - note some creatures such as Bloatflies have large bounds which affects their ashpile size.
+Options (Ashpile Scale):
+  fMinScale - minimum scale applied to ashpiles
+  fMaxScale - maximum scale applied to ashpiles (set to 0 for no limit)
+
+bTargetProjectilesInVATS
+Allow targeting projectiles in VATS. The percentage hit chance doesn't take the visibility of the projectile into account, only the distance + player skill.
+
+bStartMenuQuickLoad
+Add support for the QuickLoad key in the Main/Pause menus.
+
+bShowQuestObjectivesOnCellChange
+Show quest objectives when changing cells.
+Options (Quest Reminders On Cell Change):
+  fMinInterval - prevent showing objectives again within this time (in seconds)
+
+bContactMines
+Instantly detonate mines when they are stood on.
+Options (Contact Mines):
+  bPlayer - affect the player
+  bNPCs - affect NPCs
+
+bAutoWeaponJamWhileFiring
+Allow firing anim jams to play while firing an automatic weapon. In vanilla only the first shot can jam. Note that you need to edit the fWeaponConditionJam1/fWeaponConditionJam2... gamesettings to add a chance for any jams while firing.
+
+bClickToExitLoadScreens
+Require clicking to exit load screens.
+Options (Click To Load):
+  bHideWheel - hide the loading wheel when loading is finished
+  bLoadGameOnly - don't require clicking through fast travel/exterior load screens
+
+bHideCursorInMessageMenu
+Hide the cursor in the message popup windows.
+
+bChanceBasedKillcams
+Give a chance the cinematic/player view killcam will play when killing the last of a combat group.
+Options (Killcam):
+  fChance - percentage chance the cinematic/player view killcam will play when killing the last of a combat group
+
+bQuestTextVisibleInMenus
+Keep the quest/location added text visible in the PipBoy and Hacking menus, and while sitting down.
+
+bSkipLoadSaveConfirmationPrompt
+Skip the confirmation prompt when loading a save.
+Options (Skip Load Confirmation):
+  bMainMenuOnly - only skip the confirmation at the main menu
+
+bColorWeaponCndLabel
+Allow coloring the weapon low condition label.
+Options (Weapon Condition Label):
+  fFlashThreshold - threshold health percent for weapon label to blink
+  fColorThreshold - threshold health percent for weapon label to turn red
+
+bArmorConditionLabel
+Add an armor condition label to the HUD.
+Options (HUD Armor Condition)
+  sArmorLabel - label shown beside the armor meter
+  sWeaponLabel - replacement label beside the weapon meter (leave blank to use vanilla string)
+  fFlashThreshold - threshold health percent for label to blink
+  fColorThreshold - threshold health percent for label to turn red
+  fVisibilityThreshold - threshold health percent for label to turn visible (set to 0 to disable)
+
+bMoveAmmoTypeLabel
+Moves the ammo type label to under the ammo count.
+
+bArmorPreventsBloodDecals
+Prevent blood decals for attacks that don't penetrate target DT.
+
+bEnemyHealthbarShowBuffedHP
+Include health modifiers in enemy healthbars (e.g. buffout).
+
+bSleepOnChairs
+Sleep when waiting on chairs.
+
+bSleepWaitSliderShowsWakeTime
+Show the wake time on the sleep/wait slider instead of hours.
+
+bCripplingDoesntDisarm
+Prevent NPCs dropping their weapons when arms are crippled.
+
+bKeepFallHeightOnLoad
+Prevent fall height being reset when loading a save.
+
+bReviveUnconsciousCompanions
+Use stimpaks to revive unconscious companions.
+Options (Revive Unconscious Companions):
+  fUnconsciousTime - duration companions stay knocked out (set to 0 to use the vanilla fEssentialDeathTime gamesetting)
+  sPrompt - prompt shown when mousing over an unconscious companion
+
+bHeatbeatSoundsFade
+Fade the volume of heartbeat sounds, reset the volume when taking damage.
+Options (Heartbeat Sounds Fade):
+  fDuration - duration for the sound fading in seconds
+  iEasingFunction - which easing function will be applied to the volume
+
+bArmorSoundsPlayIn3D
+Play armor foley sounds in 3D when in 3rd person.
+
+bSortPipboyRepairMenu
+Sort the pipboy repair menu.
 
 ----------------
 [Hotkeys]
@@ -2397,11 +2585,17 @@ Options (Hide HUD Key):
 iEquipLastWeaponKey - equips the last equipped weapon
 Options (Equip Last Weapon Hotkey):
   bIgnoreThrowables - don't set the last equipped weapon to be a thrown weapon
+  bIgnoreNonDamageWeapons - ignore non-melee weapons with no projectiles
   bMousewheelSupport - add mousewheel to change weapons
 
 iToggleSmoothCameraKey - toggles a cinematic camera, smoothing mouse/controller movements
 Options (Smooth Camera):
   bDisableWhileAiming - disable the smooth camera while aiming
+
+iPlaceMapMarkerAtPlayerPosKey - places the map marker at your current position
+Options (Place Marker Hotkey):
+  sMessage - message to show, leave blank for none
+  sSound - editor ID of sound to play
 
 ----------------
 Orphaned subsettings:  
