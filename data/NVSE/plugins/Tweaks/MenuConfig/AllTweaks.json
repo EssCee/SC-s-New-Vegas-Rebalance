@@ -409,7 +409,7 @@
   {
     "name":"Individual Hardcore Features",
     "internalName":"bHardcoreTweaks",
-    "description":"Enable toggling of individual hardcore features, separatly from the game's hardcore setting.",
+    "description":"Enable toggling of individual hardcore features, separately from the game's hardcore setting.",
     "category":"Gameplay",
     "subsettings":[
       {
@@ -560,7 +560,7 @@
         "name":"Incremental Save key",
         "internalName":"iIncrementalSaveKey",
         "internalCategory":"Save Manager",
-        "description":"Hotkey to create an incremental save (using slots)."
+        "description":"Hotkey to create a slot save. e.g. Courier - Save 1, Courier - Save 2..."
       },
       {
         "type":"slider",
@@ -569,7 +569,7 @@
         "internalCategory":"Save Manager",
         "description":"Number of incremental save slots, when the max slot is reached it will begin overwriting from slot 0.",
         "minValue":0,
-        "maxValue":200
+        "maxValue":20
       },
       {
         "type":"slider",
@@ -587,13 +587,13 @@
         "internalCategory":"Save Manager",
         "description":"Number of autosave slots, when the max slot is reached it will begin overwriting from slot 0.",
         "minValue":0,
-        "maxValue":200
+        "maxValue":20
       },
       {
         "name":"Periodic fullsave",
         "internalName":"bPeriodicFullsave",
         "internalCategory":"Save Manager",
-        "description":"Fullsave every time the max slot is reached."
+        "description":"Create a named save every time the max slot is reached."
       },
       {
         "name":"No autosave message",
@@ -624,6 +624,12 @@
         "internalName":"bSaveOnPickpocket",
         "internalCategory":"Save Manager",
         "description":"Autosave when closing the container menu after pickpocketing without getting caught."
+      },
+      {
+        "name":"Save on craft item",
+        "internalName":"bSaveOnCraft",
+        "internalCategory":"Save Manager",
+        "description":"Autosave when closing the recipe menu after crafting an item."
       },
       {
         "name":"Save before level up",
@@ -976,7 +982,7 @@
         "name":"Turn light off if it's daytime",
         "internalName":"bCheckNight",
         "internalCategory":"Pipboy Light Cell Change",
-        "description":"Turn the pipboy light off when entering an exterior at daytime."
+        "description":"Only turn the pipboy light off when entering an exterior between sunrise and sunset."
       }
     ]
   },
@@ -1331,6 +1337,12 @@
         "description":"Max AP cost for a charged attack.",
         "minValue":0,
         "maxValue":400
+      },
+      {
+        "name":"Prevent power attacks without enough AP",
+        "internalName":"bPreventIfNotEnoughAP",
+        "internalCategory":"Charged Attacks",
+        "description":"Perform normal attacks when holding attack without enough AP."
       }
     ]
   },
@@ -2540,6 +2552,15 @@
         "internalName":"bMarkGuessesAsDuds",
         "internalCategory":"Hacking",
         "description":"Turn incorrect guesses into ....."
+      },
+      {
+        "type":"slider",
+        "name":"Allowance Replenished Bonus",
+        "internalName":"iAllowanceReplenishedBonus",
+        "internalCategory":"Hacking",
+        "description":"Give a bonus number of attempts when finding a 'Replenish Allowanced' instead of setting attempts to the max (e.g. 4 in vanilla).",
+        "minValue": 0,
+        "maxValue": 5
       }
     ]
   },
@@ -2704,10 +2725,16 @@
         "description":"Message shown at the bottom of the container menu containing success percentage."
       },
       {
-        "name":"Reverse Pickpocket Karma Penalty Live Grenades Only",
+        "name":"Reverse pickpocket karma penalty live grenades only",
         "internalName":"bReversePickpocketPenaltyLiveGrenadesOnly",
         "internalCategory":"Pickpocket Overhaul",
         "description":"Only lose karma when reverse pickpocketing if it's a live explosive."
+      },
+      {
+        "name":"No karma loss when stealing from hostile NPCs",
+        "internalName":"bPickpocketKarmaFriendlyNPCsOnly",
+        "internalCategory":"Pickpocket Overhaul",
+        "description":"Only lose karma when pickpocketing from non-hostile NPCs."
       },
       {
         "type":"slider",
@@ -3267,7 +3294,15 @@
     "name":"Barter Check Actor Buy Sell Flags",
     "internalName":"bBarterCheckActorBuySellFlags",
     "description":"Make vendors obey their Buy/Sell flags, hiding items the vendor doesn't accept.",
-    "category":"Gameplay"
+    "category":"Gameplay",
+    "subsettings":[
+      {
+        "name":"Ammo Requires Weapons",
+        "internalName":"bAmmoRequiresWeapons",
+        "internalCategory":"Barter Use Buy Sell Flags",
+        "description":"Only buy/sell ammo if vendor buys/sells weapons."
+      }
+    ]
   },
   {
     "name":"Keep Selected Console Ref",
@@ -3419,7 +3454,15 @@
     "name":"Pick Locks Without Skill",
     "internalName":"bPickLocksWithoutSkill",
     "description":"Allow picking locks of any level.",
-    "category":"Cheat"
+    "category":"Gameplay",
+    "subsettings":  [
+      {
+        "name":"Scale difficulty",
+        "internalName":"bModifyDifficulty",
+        "internalCategory":"Remove Lock Skill Requirement",
+        "description":"Scale the difficulty of locks based on your skill deficit.\nFormula: sweetSpot = vanillaSweetSpot * (skillLevel / skillReq)"
+      }
+    ]
   },
   {
     "name":"Hack Terminals Without Skill",
@@ -4456,6 +4499,10 @@
           {
             "name":"InOutQuart",
             "value":6
+          },
+          {
+            "name":"OutCubic",
+            "value":7
           }
         ]
       }
@@ -5164,6 +5211,12 @@
         "internalName":"iSecondSlotKey",
         "internalCategory":"Weapon Hotkeys",
         "description":"Scancode of the keyboard hotkey."
+      },
+      {
+        "name":"Show keybinds on labels",
+        "internalName":"bUseKeybindsOnLabels",
+        "internalCategory":"Weapon Hotkeys",
+        "description":"Use the name of the bound hotkey on the wheel instead of 1/2/3..."
       }
     ]
   },
@@ -5345,7 +5398,7 @@
   {
     "name":"No Skill Message If Increase Is Zero",
     "internalName":"bNoSkillMessageIfIncreaseIsZero",
-    "description":"Prevent the 'skill increased by 0' if reading a book with no bonus.",
+    "description":"Prevent the 'skill increased by 0' if reading a book with no bonus. Additionally display fractional skill book increases to two decimal places.",
     "category":"Quality-of-life"
   },
   {
@@ -6736,7 +6789,15 @@
     "name":"Mousewheel Scrolls Weapon Hotkeys",
     "internalName":"bMousewheelScrollsWeaponHotkeys",
     "description":"Add mousewheel to scroll through hotkeyed weapons.",
-    "category":"Gameplay"
+    "category":"Gameplay",
+    "subsettings":[
+      {
+        "name":"Invert Scroll",
+        "internalName":"bInvert",
+        "internalCategory":"Mousewheel Scrolls Weapon Hotkeys",
+        "description":"Invert the weapon swap direction."
+      }
+    ]
   },
   {
     "name":"Cap Skills By SPECIAL",
@@ -6956,7 +7017,7 @@
   {
     "name":"Inventory Alternate Ammo Indicator",
     "internalName":"bShowAlternateAmmoTypesAvailableInMenus",
-    "description":"Show a * beside ammo count in inventory menus if you have any alternate ammos.",
+    "description":"Show a + beside ammo count in inventory menus if you have any alternate ammos.",
     "category":"Menus"
   },
   {
@@ -7734,7 +7795,15 @@
     "name":"Pause Holotapes",
     "internalName":"bPauseHolotapes",
     "description":"Make clicking on the current holotape pause it, double tapping pause resets the holotape.",
-    "category":"Menus"
+    "category":"Menus",
+    "subsettings": [
+      {
+        "name":"Pause In Dialog Menu",
+        "internalName":"bPauseInDialogMenu",
+        "internalCategory":"Pause Holotapes",
+        "description": "Pause holotapes while the Dialog menu is open."
+      }
+    ]
   },
   {
     "name":"Improved Weather",
@@ -7759,6 +7828,12 @@
     "description":"Show the name of the nearest location marker you're looking towards.",
     "category":"HUD",
     "subsettings": [
+      {
+        "name":"Hide Undiscovered Names",
+        "internalName":"bHideUndiscoveredNames",
+        "internalCategory":"HUD Marker Name",
+        "description": "Whether names of undiscovered locations should be hidden."
+      },
       {
         "name":"Show Distance",
         "internalName":"iShowDistance",
@@ -8168,6 +8243,10 @@
           {
             "name":"InOutQuart",
             "value":6
+          },
+          {
+            "name":"OutCubic",
+            "value":7
           }
         ]
       }
@@ -8183,6 +8262,224 @@
     "name":"Sort Pipboy Repair Menu",
     "internalName":"bSortPipboyRepairMenu",
     "description":"Sort the pipboy repair menu alphabetically, placing items equal to the repair item first.",
+    "category":"Menus"
+  },
+  {
+    "name":"Disable Invisibility In PipBoy",
+    "internalName":"bDisableStealthEffectInPipboy",
+    "description":"Disable the invisibility effect from stealth boys etc. while the pipboy is open.",
+    "category":"Misc"
+  },
+  {
+    "name":"Barter Show Caps Change",
+    "internalName":"bBarterShowCapsChange",
+    "description":"Show the final caps after a transaction beside player/merchant caps.",
+    "category":"Menus",
+    "subsettings":[
+      {
+        "name":"Mode",
+        "internalName":"iMode",
+        "internalCategory":"Barter Show Transaction Caps",
+        "options":[
+          {
+            "name":"Text",
+            "value":0,
+            "description":"Show { current -> final } for the caps display."
+          },
+          {
+            "name":"Brightness",
+            "value":1,
+            "description":"Show the final caps display and adjust the text brightness."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Companions Don't Consume Ammo",
+    "internalName":"bCompanionsDontUseAmmo",
+    "description":"Don't remove ammo from companions when they fire weapons.",
+    "category":"Gameplay"
+  },
+  {
+    "name":"Ammo Burst Case Count Fix",
+    "internalName":"bAmmoBurstCaseCountFix",
+    "description":"Give a chance to earn multiple ammo casings from weapons that use more than 1 ammo per shot (e.g. the Tri-Beam laser rifle).",
+    "category":"Fixes"
+  },
+  {
+    "name":"Reallocate Skill Points On LevelUp",
+    "internalName":"bReallocateSkillPointsOnLevelup",
+    "description":"Allow reassigning all skill points when leveling up.",
+    "category":"Cheat"
+  },
+  {
+    "name":"Use Weapon Repair Kits In Repair Menu",
+    "internalName":"bUseWeaponRepairKitsInRepairMenu",
+    "description":"Show repair kits in the weapon repair menu.",
+    "category":"Gameplay",
+    "subsettings":[
+      {
+        "type":"input",
+        "name":"Repair Text",
+        "internalName":"sRepairText",
+        "internalCategory":"Use Repair Kits In Repair Menu",
+        "description": "Text to display instead of 'Repair' if you only have repair kits."
+      }
+    ]
+  },
+  {
+    "name":"Strength Affects All Throwable Distances",
+    "internalName":"bStrengthAffectsAllThrowables",
+    "description":"Make the fThrowingStrengthPenalty gamesetting also affect grenades and mines.",
+    "category":"Gameplay"
+  },
+  {
+    "name":"Map Remembers Position",
+    "internalName":"bMapRemembersPosition",
+    "description":"Remember the last viewed position in the Map Menu.",
+    "category":"Menus",
+    "subsettings":[
+      {
+        "name":"Save Persistent",
+        "internalName":"bSavePersistent",
+        "internalCategory":"Remember Map Position",
+        "description": "Remember the map position for each save."
+      }
+    ]
+  },
+  {
+    "name":"Map Recenter Hotkey",
+    "internalName":"bMapRecenterHotkey",
+    "description":"Add a hotkey to recenter the map menu.",
+    "category":"Menus",
+    "subsettings":[
+      {
+        "type":"slider",
+        "name":"Easing Time",
+        "internalName":"iEasingTimeMS",
+        "internalCategory":"Map Recenter Hotkey",
+        "description":"Duration of the recenter movement (in milliseconds).",
+        "minValue":0,
+        "maxValue":5000
+      },
+      {
+        "name":"Easing function",
+        "internalName":"iEasingFunction",
+        "internalCategory":"Map Recenter Hotkey",
+        "description":"Which easing function will be applied to the movement (see easings.net).",
+        "options":[
+          {
+            "name":"None",
+            "value":0
+          },
+          {
+            "name":"OutSine",
+            "value":1
+          },
+          {
+            "name":"OutCirc",
+            "value":2
+          },
+          {
+            "name":"InOutSine",
+            "value":3
+          },
+          {
+            "name":"InOutCirc",
+            "value":4
+          },
+          {
+            "name":"OutQuart",
+            "value":5
+          },
+          {
+            "name":"InOutQuart",
+            "value":6
+          },
+          {
+            "name":"OutCubic",
+            "value":7
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Map Locations Show Distance",
+    "internalName":"bMapLocationDisplayDistance",
+    "description":"Show the distance to the hovered location marker in the Map Menu.",
+    "category":"Menus",
+    "subsettings":[
+      {
+        "name":"Display Mode",
+        "internalName":"iDisplayMode",
+        "internalCategory":"Map Extra Marker Info",
+        "description":"Display mode.",
+        "options":[
+          {
+            "name":"Meters",
+            "value":0
+          },
+          {
+            "name":"Feet",
+            "value":1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Barter Affects Repair Costs",
+    "internalName":"bBarterAffectsRepairCosts",
+    "description":"Scale NPC repair prices based on your barter skill and perk modifiers.",
+    "category":"Gameplay",
+    "subsettings":[
+      {
+        "type":"slider",
+        "name":"Base Cost",
+        "internalName":"fCostBase",
+        "internalCategory":"Barter Affects Repair Costs",
+        "description": "Base cost.",
+        "minValue":0,
+        "maxValue":2
+      },
+      {
+        "type":"slider",
+        "name":"Cost Multiplier",
+        "internalName":"fCostMult",
+        "internalCategory":"Barter Affects Repair Costs",
+        "description": "Price decrease per barter point.",
+        "minValue":0,
+        "maxValue":0.1
+      },
+      {
+        "type":"slider",
+        "name":"Minimum Cost Multiplier",
+        "internalName":"fCostMin",
+        "internalCategory":"Barter Affects Repair Costs",
+        "description": "Minimum multiplier.",
+        "minValue":0,
+        "maxValue":2
+      }
+    ]
+  },
+  {
+    "name":"Containers Show Equipped Ammo",
+    "internalName":"bContainersShowEquippedAmmo",
+    "description":"Show the 'equipped' square beside equipped ammos in containers.",
+    "category":"Menus"
+  },
+  {
+    "name":"Quantity Menu Respects Companion Carry Limit",
+    "internalName":"bQuantityMenuRespectsCompanionCarryCap",
+    "description":"Limit the quantity menu max count when transferring items that would overburden a companion.",
+    "category":"Menus"
+  },
+  {
+    "name":"Show Voice Acting Notes in Dialogue",
+    "internalName":"bDialogueKeepVoiceActingNotes",
+    "description":"Display the voice acting notes e.g. {afterthought} in dialogue.",
     "category":"Menus"
   }
 ]

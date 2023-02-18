@@ -1,4 +1,4 @@
-Stewie Tweaks v8.26 ReadMe
+Stewie Tweaks v8.60 ReadMe
 
 Each of the plugin's features can be enabled using the in-game Pause->Settings->Tweaks menu (requires rebooting the game to apply changes), or should be enabled in the provided INI as desired. 
 If the settings don't exist, run the game with the plugin active and they will be generated.
@@ -151,16 +151,17 @@ Use incremental save slots for autosave, optionally fullsaving every rotation.
 Options (Save Manager):
    iReloadCurrentSaveKey - hotkey to reload the current loaded save (as if the player died)
    iCreateSaveKey - hotkey to create a named save
-   iIncrementalSaveKey - hotkey to create an incremental save (using slots)
+   iIncrementalSaveKey - hotkey to create a slot save
    iMaxIncrementalSaveCount - number of incremental save slots
    iAutoSaveTimer - delay between timed autosaves in seconds
    iMaxAutoSaveCount - number of autosave slots, when the max slot is reached it will begin overwriting from slot 0
-   bPeriodicFullsave - fullsave every time the max slot is reached
+   bPeriodicFullsave - create a full (named) save every time the max slot is reached
    bHideAutosaveMessage - hide the mod and vanilla autosave messages
    bSaveOnLocationDiscovered - autosave when a location is discovered
    bSaveOnQuestCompleted - autosave when a quest is completed
    bSaveOnExitGame - autosave when exiting the game
    bSaveOnPickpocket - autosave when closing the container menu after successfully pickpocketing
+   bSaveOnCraft - autosave when closing the recipe menu after crafting an item
    bSavePreLevelUp - autosave before the levelup menu is shown
    iMinAutosaveInterval - prevents autosaves within this time of each other (in seconds) - affects vanilla and timed autosaves
    iIncrementalSaveSlotChangeInterval - only increase the incremental save slot if it's been this long since last slot change (in seconds); e.g. when set to 60 seconds, any saves made within 0-60s of the first save in a slot will all overwrite each other - after that 60s a new slot is used
@@ -252,7 +253,7 @@ Stops the container menu showing automatically when opening with lock-pick or a 
 bKeepPipboyLightOnCellChange
 Stops the PipBoy light turning off when entering an exterior cell.
 Options (Pipboy Light Cell Change):
-  bCheckNight - turn the pipboy light off if it's daytime in the exterior
+  bCheckNight - only turn the pipboy light off if it's daytime in the exterior
 
 bLockpickAllowMouse
 Allows the use of left clicking to rotate during lock-pick (in addition to the default WASD).
@@ -412,6 +413,7 @@ Options (Charged Attacks):
   iChargedAttackAPCost - base number of action points used
   fChargedAttackWeaponWeightAPMult - extra action points per point of weight for the current weapon
   iChargedAttackAPCostMax - max AP cost for a charged attack
+  bPreventIfNotEnoughAP - perform normal attacks when holding attack without enough AP
 
 bAddInventoryDropItemHotkey
 Adds a hot-key 'Q' to drop the currently selected item from the PipBoy menu.
@@ -778,6 +780,7 @@ Options (Hacking):
   bCompactGuesses - prints guesses as a single line without the 'Entry denied', e.g. HORIZON (1/7)
   bOverscroll - make scrolling to the edge of the screen wrap around to the other side (controller or WASD)
   bMarkGuessesAsDuds - turn incorrect guesses into ..... when clicking on them
+  iAllowanceReplenishedBonus - give a bonus number of attempts when finding a 'Replenish Allowanced' instead of setting attempts to the max (e.g. 4 in vanilla)
 
 bLockNeedsKeyShowName
 Adds the name of the required key to the end of the sImpossibleLock message. Note: some keys are just named "Key" in the base game - see https://fallout.fandom.com/wiki/Fallout:_New_Vegas_keys
@@ -849,6 +852,7 @@ Options (Pickpocket Overhaul):
   bShowPickpocketSuccessRate - add the pickpocket success chance to the bottom of the container menu
   sSuccessMessage - message shown at the bottom of the container menu containing success percentage
   bReversePickpocketPenaltyLiveGrenadesOnly - only lose karma when reverse pickpocketing if it's a live explosive
+  bPickpocketKarmaFriendlyNPCsOnly - only lose karma when pickpocketing from non-hostile NPCs
   fBaseChance
   fPlayerSneakMult
   fItemValueMult
@@ -1021,6 +1025,8 @@ Disables hard-coded one-time tutorial menu messages, e.g. hacking, lockpick, Pip
 
 bBarterCheckActorBuySellFlags
 Make vendors obey their Buy/Sell flags, hiding items the vendor doesn't accept.
+Options (Barter Use Buy Sell Flags):
+  bAmmoRequiresWeapons - only buy/sell ammo if vendor buys/sells weapons
 
 bKeepSelectedConsoleRef
 Remembers the selected ref when closing the console (provided it is still loaded).
@@ -1067,6 +1073,9 @@ Stops the XP bar being hidden when closing a menu (e.g. Hacking, Dialogue or Loc
 
 bPickLocksWithoutSkill
 Allow picking locks of any level.
+Options (Remove Lock Skill Requirement):
+  bModifyDifficulty - scale the difficulty of locks based on your skill deficit
+    Formula: sweetSpot = vanillaSweetSpot * (skillLevel / skillReq)
 
 bHackTerminalsWithoutSkill
 Allow hacking terminals of any level.
@@ -1420,15 +1429,16 @@ Don't stop the current holotape's audio when clicking on other (non-audio) notes
 bSmoothIronsightsCameraTransition
 Smooth the ironsights animation by interpolating between the non-aiming and aiming camera positions.
 Options (Smooth Iron Sights Camera):
-	iAimTransitionTimeMS - time taken to transition between the camera positions
-	iEasingFunction - which easing function will be applied to the movement (see https://easings.net/)
+    iAimTransitionTimeMS - time taken to transition between the camera positions
+    iEasingFunction - which easing function will be applied to the movement (see https://easings.net/)
     - 0: None
     - 1: OutSine
     - 2: OutCirc
     - 3: InOutSine
     - 4: InOutCirc
     - 5: OutQuart
-		- 6: InOutQuart
+    - 6: InOutQuart
+    - 7: OutCubic
 
 bDisableNeedsMessages
 Prevents the messages when hardcore needs and radiation levels increase/decrease.
@@ -1680,6 +1690,8 @@ bRestore2Hotkey
 Restores the '2' weapon hotkey. Requires "Data/menus/prefabs/lStewieAl/2Hotkey.xml". Controller users will need to bind ammo swap some other way (e.g. using bDoubleTapReloadToChangeAmmoType).
 Options (Weapon Hotkeys):
   iSecondSlotKey - scancode of the keyboard hotkey
+  bUseKeybindsOnLabels - use the name of the bound hotkey on the wheel instead of 1/2/3...
+
 
 bEncumbranceIncludesGrabbedItems
 Include the weight of the grabbed ('Z' key) item stack weight when determining if player is overencumbered.
@@ -1728,7 +1740,7 @@ bActivatingDoesntStandUp
 Make activating while using furniture not stand up, instead use movement to stand while seated.
 
 bNoSkillMessageIfIncreaseIsZero
-Prevent the 'skill increased by 0' if reading a book with no bonus.
+Prevent the 'skill increased by 0' if reading a book with no bonus. Additionally display fractional skill book increases to two decimal places.
 
 bCompassFadeLeftSide
 Fade icons for NPCs, doors etc. on the left side of the compass. Useful if using a centered compass.
@@ -2132,7 +2144,7 @@ bAimingUnholstersWeapons
 Unholster weapons when aiming.
 
 bShowAlternateAmmoTypesAvailableInMenus
-Show a * beside ammo count in inventory menus if you have any alternate ammos.
+Show a + beside ammo count in inventory menus if you have any alternate ammos.
 
 bReloadWhileFiring
 Allow reloading while firing anims play.
@@ -2416,6 +2428,8 @@ Use challenge icons in the pipboy challenges menu (requires a mod that adds icon
 
 bPauseHolotapes
 Make clicking on the current holotape pause it, double tapping pause resets the holotape.
+Options (Pause Holotapes):
+  bPauseInDialogMenu - pause holotapes while the Dialog menu is open
 
 bImprovedWeather
 Prevent weather changes when fast traveling short distances.
@@ -2425,6 +2439,7 @@ Options (Improved Weather):
 bHUDMarkerNameIndicator
 Show the name of the nearest triangle location marker you're looking towards.
 Options (HUD Marker Name):
+  bHideUndiscoveredNames - whether names of undiscovered locations should be hidden
   iShowDistance - mode for showing distance to the location
     0 - off
 	1 - meters
@@ -2528,12 +2543,89 @@ Fade the volume of heartbeat sounds, reset the volume when taking damage.
 Options (Heartbeat Sounds Fade):
   fDuration - duration for the sound fading in seconds
   iEasingFunction - which easing function will be applied to the volume
+    - 0: None
+    - 1: OutSine
+    - 2: OutCirc
+    - 3: InOutSine
+    - 4: InOutCirc
+    - 5: OutQuart
+    - 6: InOutQuart
+    - 7: OutCubic
 
 bArmorSoundsPlayIn3D
 Play armor foley sounds in 3D when in 3rd person.
 
 bSortPipboyRepairMenu
 Sort the pipboy repair menu.
+
+bDisableStealthEffectInPipboy
+Disable the invisibility effect from stealth boys etc. while the pipboy is open.
+
+bBarterShowCapsChange
+Show the final caps after a transaction beside player/merchant caps.
+Options (Barter Show Transaction Caps):
+  iMode - display mode
+  - 0: show { current -> final } for the caps display
+  - 1: show the final caps display and adjust the text brightness
+
+bCompanionsDontUseAmmo
+Don't remove ammo from companions when they fire weapons.
+
+bAmmoBurstCaseCountFix
+Give a chance to earn multiple ammo casings from weapons that use more than 1 ammo per shot.
+
+bReallocateSkillPointsOnLevelup
+Allow reassigning all skill points when leveling up.
+
+bUseWeaponRepairKitsInRepairMenu
+Show repair kits in the weapon repair menu.
+Options (Use Repair Kits In Repair Menu):
+  sRepairText - text to display instead of 'Repair' if you only have repair kits
+
+bStrengthAffectsAllThrowables
+Make the fThrowingStrengthPenalty gamesetting also affect grenades and mines.
+
+bMapRemembersPosition
+Remember the last viewed position in the Map Menu.
+Options (Remember Map Position):
+  bSavePersistent - remember the map position for each save
+
+bMapRecenterHotkey
+Add a hotkey to recenter the map menu.
+Options (Map Recenter Hotkey):
+  iEasingTimeMS - duration of the recenter movement
+  iEasingFunction - which easing function will be applied to the movement
+    - 0: None
+    - 1: OutSine
+    - 2: OutCirc
+    - 3: InOutSine
+    - 4: InOutCirc
+    - 5: OutQuart
+    - 6: InOutQuart
+    - 7: OutCubic
+
+bMapLocationDisplayDistance
+Show the distance or time to the hovered location marker in the Map Menu.
+Options (Map Extra Marker Info):
+  iDisplayMode - display mode
+  - 0: Meters
+  - 1: Feet
+
+bBarterAffectsRepairCosts
+Scale NPC repair prices based on your barter skill and perk modifiers.
+Options (Barter Affects Repair Costs):
+  fCostBase - base cost
+  fCostMult - price decrease per barter point
+  fCostMin - minimum multiplier
+
+bContainersShowEquippedAmmo
+Show the 'equipped' square beside equipped ammos in containers.
+
+bQuantityMenuRespectsCompanionCarryCap
+Limit the quantity menu max count when transferring items that would overburden a companion.
+
+bDialogueKeepVoiceActingNotes
+Display the voice acting notes e.g. {afterthought} in dialogue.
 
 ----------------
 [Hotkeys]
