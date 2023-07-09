@@ -1,4 +1,4 @@
-Stewie Tweaks v8.60 ReadMe
+Stewie Tweaks v8.65 ReadMe
 
 Each of the plugin's features can be enabled using the in-game Pause->Settings->Tweaks menu (requires rebooting the game to apply changes), or should be enabled in the provided INI as desired. 
 If the settings don't exist, run the game with the plugin active and they will be generated.
@@ -2626,6 +2626,9 @@ Limit the quantity menu max count when transferring items that would overburden 
 
 bDialogueKeepVoiceActingNotes
 Display the voice acting notes e.g. {afterthought} in dialogue.
+
+bRaceMenuAllowFemaleFacialHair
+Allow selecting facial hair on female characters in the Race menu.
 
 ----------------
 [Hotkeys]

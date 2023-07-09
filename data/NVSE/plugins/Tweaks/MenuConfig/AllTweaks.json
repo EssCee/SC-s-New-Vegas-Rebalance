@@ -8481,5 +8481,17 @@
     "internalName":"bDialogueKeepVoiceActingNotes",
     "description":"Display the voice acting notes e.g. {afterthought} in dialogue.",
     "category":"Menus"
+  },
+  {
+    "name":"Location Discovered Corner Message",
+    "internalName":"bLocationDiscoveredCornerMessage",
+    "description":"Display the location discovered text as a corner message as in Fallout 3.",
+    "category":"HUD"
+  },
+  {
+    "name":"Race Menu Allow Female Facial Hair",
+    "internalName":"bRaceMenuAllowFemaleFacialHair",
+    "description":"Allow selecting facial hair on female characters in the Race menu.",
+    "category":"HUD"
   }
 ]
