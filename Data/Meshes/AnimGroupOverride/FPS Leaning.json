@@ -1,0 +1,12 @@
+[
+	{
+		"folder": "FPSLeanLeft",
+		"condition": "PlayerRef.GetVATSLeftAreaFree >= 65 && iLeaningL 1",
+		"pollCondition": true
+	},
+	{
+		"folder": "FPSLeanRight",
+		"condition": "PlayerRef.GetVATSRightAreaFree >= 65 && iLeaningR 1",
+		"pollCondition": true
+	}
+]

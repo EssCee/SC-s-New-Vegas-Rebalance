@@ -1,0 +1,8 @@
+			<!-- <systemcolor> &hudmain; </systemcolor> -->
+
+			<systemcolor> &nosystemcolor; </systemcolor>
+			<brightness> &uselocalcolor; </brightness>
+			<!-- gray (for PCShortcutLabel) -->
+			<red> 180 </red>
+			<green> 180 </green>
+			<blue> 180 </blue>
