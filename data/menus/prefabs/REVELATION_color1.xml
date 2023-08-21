@@ -1,8 +1,0 @@
-			<!-- <systemcolor> &hudmain; </systemcolor> -->
-
-			<systemcolor> &nosystemcolor; </systemcolor>
-			<brightness> &uselocalcolor; </brightness>
-			<!-- Fallout Tactics yellow (for Buttons) -->
-			<red> 230 </red>
-			<green> 200 </green>
-			<blue> 75 </blue>
